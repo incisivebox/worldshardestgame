@@ -1,5 +1,5 @@
-﻿Build started 4/4/2016 10:02:29 AM.
-     1>Project "N:\Computer Science 1\Period 2\Jacobs, Ryan A\worldshardestgame\worldshardestgame\worldshardestgame.vcxproj" on node 2 (build target(s)).
+﻿Build started 4/4/2016 10:48:18 AM.
+     1>Project "C:\Users\234578\Documents\GitHub\worldshardestgame\worldshardestgame\worldshardestgame.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\worldshardestgame.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
@@ -8,16 +8,16 @@
      1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\winbgi.cpp(484): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"N:\Computer Science 1\Period 2\Jacobs, Ryan A\worldshardestgame\Debug\worldshardestgame.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\worldshardestgame.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"N:\Computer Science 1\Period 2\Jacobs, Ryan A\worldshardestgame\Debug\worldshardestgame.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"N:\Computer Science 1\Period 2\Jacobs, Ryan A\worldshardestgame\Debug\worldshardestgame.lib" /MACHINE:X86 Debug\source.obj
-         LINK : N:\Computer Science 1\Period 2\Jacobs, Ryan A\worldshardestgame\Debug\worldshardestgame.exe not found or not built by the last incremental link; performing full link
-         worldshardestgame.vcxproj -> N:\Computer Science 1\Period 2\Jacobs, Ryan A\worldshardestgame\Debug\worldshardestgame.exe
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\234578\Documents\GitHub\worldshardestgame\Debug\worldshardestgame.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\worldshardestgame.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\234578\Documents\GitHub\worldshardestgame\Debug\worldshardestgame.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\234578\Documents\GitHub\worldshardestgame\Debug\worldshardestgame.lib" /MACHINE:X86 Debug\source.obj
+         LINK : C:\Users\234578\Documents\GitHub\worldshardestgame\Debug\worldshardestgame.exe not found or not built by the last incremental link; performing full link
+         worldshardestgame.vcxproj -> C:\Users\234578\Documents\GitHub\worldshardestgame\Debug\worldshardestgame.exe
        Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"N:\Computer Science 1\Period 2\Jacobs, Ryan A\worldshardestgame\Debug\worldshardestgame.exe;#1" /manifest Debug\worldshardestgame.exe.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\234578\Documents\GitHub\worldshardestgame\Debug\worldshardestgame.exe;#1" /manifest Debug\worldshardestgame.exe.intermediate.manifest
        FinalizeBuildStatus:
          Deleting file "Debug\worldshardestgame.unsuccessfulbuild".
          Touching "Debug\worldshardestgame.lastbuildstate".
-     1>Done Building Project "N:\Computer Science 1\Period 2\Jacobs, Ryan A\worldshardestgame\worldshardestgame\worldshardestgame.vcxproj" (build target(s)).
+     1>Done Building Project "C:\Users\234578\Documents\GitHub\worldshardestgame\worldshardestgame\worldshardestgame.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.22
+Time Elapsed 00:00:01.09
