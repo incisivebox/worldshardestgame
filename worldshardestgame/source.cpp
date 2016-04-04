@@ -5,6 +5,7 @@
 #include <ctime>
 #include <math.h>
 
+
 using namespace std;
 
 int GrDriver, GrMode, ErrorCode;
@@ -31,5 +32,44 @@ void main()
 {
 	gr_start(GrDriver, GrMode, ErrorCode);
 	system("pause");
+	Square square(500, 600, 600, 500);
+	square.spawn();
+	while(true)
+	{
+		square.translate();
+	}
 }
+
+struct Square
+{
+
+		Square(int rectleft, int recttop, int rectright, int rectbottom)
+		{
+			left = rectleft;
+			top = recttop;
+			right = rectright;
+			bottom = rectbottom;
+		}
+
+
+		void spawn()
+		{
+			bar(left, top, right, bottom);
+		}
+
+		void translate()
+		{
+			int keypress = kbhit();
+			if(keypress == 119)
+			{
+				top--;
+				bottom--;
+			}
+		}
+
+		int left, top, right, bottom;
+		
+};
+
+
 
