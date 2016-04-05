@@ -1,10 +1,4 @@
-#include <iostream>
-#include <string>
-#include <graphics.h>
-#include <winbgi.cpp>
-#include <ctime>
-#include <math.h>
-
+#include "square.h"
 
 using namespace std;
 
@@ -28,48 +22,31 @@ void gr_start(int &GrDriver, int &GrMode, int &ErrorCode)
 	}
 }
 
+
+
 void main()
 {
+	int key = 0;
 	gr_start(GrDriver, GrMode, ErrorCode);
-	system("pause");
 	Square square(500, 600, 600, 500);
 	square.spawn();
 	while(true)
 	{
-		square.translate();
+		if(kbhit())
+		{
+			key = getch();
+			cout << key << '\n';
+			square.translate(key);
+		}
+		else
+		{
+			square.spawn();
+		}
 	}
 }
 
-struct Square
-{
-
-		Square(int rectleft, int recttop, int rectright, int rectbottom)
-		{
-			left = rectleft;
-			top = recttop;
-			right = rectright;
-			bottom = rectbottom;
-		}
 
 
-		void spawn()
-		{
-			bar(left, top, right, bottom);
-		}
-
-		void translate()
-		{
-			int keypress = kbhit();
-			if(keypress == 119)
-			{
-				top--;
-				bottom--;
-			}
-		}
-
-		int left, top, right, bottom;
-		
-};
 
 
 
