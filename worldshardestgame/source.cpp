@@ -7,6 +7,7 @@
 #include "square.h"
 #include "circle.h"
 #include "endzone.h"
+#include "powerup.h"
 
 using namespace std;
 
