@@ -1,45 +1,37 @@
-#include <iostream>
-#include <string>
-#include <graphics.h>
-#include <winbgi.cpp>
-#include <ctime>
-#include <math.h>
-
-
 struct Circle{
 
 	int x;
 	int y;
 	bool dir;
 
-}circ[16];
+}circ[12];
 
-void circsetup(){
+void lvl1circsetup(){
 	//Setup circles on opposing ends of screen (for level one only)
 	circ[0].x = 300;
-	circ[0].y = 40;
+	circ[0].y = 100;
 	circ[0].dir = true;
-	circle(circ[0].x, circ[0].y, 20);
+	circle(circ[0].x, circ[0].y, 30);
 
-	for (int i = 1; i < 16; i++){
-		circ[i].x = circ[i - 1].x + 80;
+	for (int i = 1; i < 12; i++){
+		circ[i].x = circ[i - 1].x + 110;
 		if (i % 2 == 0){
-			circ[i].y = 40;
+			circ[i].y = 100;
 			circ[i].dir = true;
 		}
 		else if (i % 2 == 1){
 			circ[i].y = 900;
 			circ[i].dir = false;
 		}
-		circle(circ[i].x, circ[i].y, 20);
+		circle(circ[i].x, circ[i].y, 30);
 	}
 
 }
 
-void circupdate(){
-	for (int i = 0; i < 16; i++){
+void lvl1circupdate(){
+	for (int i = 0; i < 12; i++){
 		setcolor(0);
-		circle(circ[i].x, circ[i].y, 20);
+		circle(circ[i].x, circ[i].y, 30);
 		//Move circle
 		if (circ[i].dir == true){
 			circ[i].y += 10;
@@ -52,11 +44,11 @@ void circupdate(){
 		if (circ[i].y == 900 && circ[i].dir == true){
 			circ[i].dir = false;
 		}
-		else if (circ[i].y == 40 && circ[i].dir == false){
+		else if (circ[i].y == 100 && circ[i].dir == false){
 			circ[i].dir = true;
 		}
 		//Print update circle
 		setcolor(15);
-		circle(circ[i].x, circ[i].y, 20);
+		circle(circ[i].x, circ[i].y, 30);
 	}
 }
