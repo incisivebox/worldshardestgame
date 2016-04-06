@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+#include "circle.h"
+
+using namespace std;
+
+>>>>>>> origin/master
 struct Square
 {
 		int left, top, right, bottom;
@@ -20,22 +27,22 @@ struct Square
 		void translate(int key)
 		{
 			int speed = 10;
-			if(key == 119)
+			if(key == 119 && top >= 100)
 			{
 				top-=speed;
 				bottom-=speed;
 			}
-			else if(key == 115)
+			else if(key == 115 && bottom <= getmaxy() - 100)
 			{
 				top+=speed;
 				bottom+=speed;
 			}
-			else if(key == 97)
+			else if(key == 97 && left >= 10)
 			{
 				left-=speed;
 				right-=speed;
 			}
-			else if(key == 100)
+			else if(key == 100 && right <= getmaxx() - 10)
 			{
 				left+=speed;
 				right+=speed;
