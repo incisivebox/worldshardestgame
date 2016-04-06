@@ -1,9 +1,4 @@
-#include <iostream>
-#include <string>
-#include <graphics.h>
-#include <winbgi.cpp>
-#include <ctime>
-#include <math.h>
+#include "circle.h"
 
 
 using namespace std;

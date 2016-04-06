@@ -1,3 +1,4 @@
+
 #include "square.h"
 
 using namespace std;
@@ -30,6 +31,7 @@ void main()
 	gr_start(GrDriver, GrMode, ErrorCode);
 	Square square(500, 600, 600, 500);
 	square.spawn();
+	circsetup();
 	while(true)
 	{
 		if(kbhit())
@@ -42,6 +44,8 @@ void main()
 		{
 			square.spawn();
 		}
+		circupdate();
+		Sleep(45);
 	}
 }
 
