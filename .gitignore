@@ -9,3 +9,5 @@
 *.tlog
 *.lastbuildstate
 *.log
+*.vcxproj
+*.filters
