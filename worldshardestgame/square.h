@@ -15,6 +15,7 @@ struct Square
 
 		void spawn()
 		{
+			setcolor(15);
 			bar(left, top, right, bottom);
 		}
 
@@ -41,7 +42,7 @@ struct Square
 				left+=speed;
 				right+=speed;
 			}
-			cleardevice();
+			//cleardevice();
 			spawn();
 		}
 

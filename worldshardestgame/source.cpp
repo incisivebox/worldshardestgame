@@ -39,17 +39,26 @@ void main()
 	Square square(500, 600, 600, 500);
 	square.spawn();
 	lvl1circsetup();
-	lvl1endsetup();
-	while(true)
+	lvl1endzonesetup();
+
+}
+
+void tick(Square square)
+{
+	while (true)
 	{
-		if(kbhit())
+		cleardevice();
+		lvl1endzonesetup();
+		if (kbhit())
 		{
+
 			key = getch();
 			cout << key << '\n';
 			square.translate(key);
 		}
 		else
 		{
+			lvl1endzonesetup();
 			square.spawn();
 		}
 		lvl1circupdate();
