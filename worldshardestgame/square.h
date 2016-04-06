@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-=======
-#include "circle.h"
 
-using namespace std;
-
->>>>>>> origin/master
 struct Square
 {
 		int left, top, right, bottom;
