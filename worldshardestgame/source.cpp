@@ -1,5 +1,12 @@
-
+#include <iostream>
+#include <string>
+#include <graphics.h>
+#include <winbgi.cpp>
+#include <ctime>
+#include <math.h>
 #include "square.h"
+#include "circle.h"
+#include "endzone.h"
 
 using namespace std;
 
@@ -31,7 +38,8 @@ void main()
 	gr_start(GrDriver, GrMode, ErrorCode);
 	Square square(500, 600, 600, 500);
 	square.spawn();
-	circsetup();
+	lvl1circsetup();
+	lvl1endsetup();
 	while(true)
 	{
 		if(kbhit())
@@ -44,7 +52,7 @@ void main()
 		{
 			square.spawn();
 		}
-		circupdate();
+		lvl1circupdate();
 		Sleep(45);
 	}
 }
