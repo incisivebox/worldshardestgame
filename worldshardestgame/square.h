@@ -19,6 +19,12 @@ struct Square
 			bar(left, top, right, bottom);
 		}
 
+		void spawn2()
+		{
+			setcolor(0);
+			bar(left, top, right, bottom);
+		}
+
 		void translate(int key)
 		{
 			int speed = 10;
