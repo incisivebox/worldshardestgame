@@ -41,11 +41,6 @@ void main()
 	square.spawn();
 	lvl1circsetup();
 	lvl1endzonesetup();
-
-}
-
-void tick(Square square)
-{
 	while (true)
 	{
 		cleardevice();
@@ -65,6 +60,13 @@ void tick(Square square)
 		lvl1circupdate();
 		Sleep(45);
 	}
+	
+
+}
+
+void tick(Square square)
+{
+
 }
 
 
