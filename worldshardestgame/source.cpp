@@ -42,46 +42,32 @@ void updatecirc(){
 
 int key = 0;
 
-void tick(){
-	while (true)
-	{
-		square.spawn2();
-		lvl1endzonesetup();
-	if (kbhit())
-		{
-			key = getch();
-			cout << key;
-			square.translate(key);
-		}
-	else
-		{
-			square.spawn();
-		}
-		Sleep(20);
-	}
+void tick(){		
+		while (kbhit())
+			{
+				square.erase();
+				lvl1endzonesetup();
+				key = getch();
+				square.translate(key);
+			}
 }
 
 
 
 void main()
 {
-	
+
 	gr_start(GrDriver, GrMode, ErrorCode);
 
 	square.spawn();
 	lvl1circsetup();
 	lvl1endzonesetup();
 	
-	//updatecirc();
-	//tick();
-	
-	thread first(tick);
-	thread second(updatecirc);
-
-	first.join();
-	
 	while (true){
-		Sleep(50000);
+		
+		tick();
+		lvl1circupdate();
+		Sleep(45);
 	}
 }
 

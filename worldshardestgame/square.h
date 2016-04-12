@@ -19,7 +19,7 @@ struct Square
 			bar(left, top, right, bottom);
 		}
 
-		void spawn2()
+		void erase()
 		{
 			setcolor(0);
 			bar(left, top, right, bottom);
