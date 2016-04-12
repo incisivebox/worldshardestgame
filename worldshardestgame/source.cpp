@@ -3,6 +3,7 @@
 #include <graphics.h>
 #include <winbgi.cpp>
 #include <ctime>
+#include <thread>
 #include <math.h>
 #include "square.h"
 #include "circle.h"
@@ -31,49 +32,50 @@ void gr_start(int &GrDriver, int &GrMode, int &ErrorCode)
 	}
 }
 
+Square square(500, 600, 600, 500);
+
+void updatecirc(){
+	while (true){
+		lvl1circupdate();
+		Sleep(45);
+	}
+}
+
+int key = 0;
+
+void tick(){		
+		while (kbhit())
+			{
+				square.erase();
+				lvl1endzonesetup();
+				key = getch();
+				square.translate(key);
+			}
+}
+
 
 
 void main()
 {
-	int key = 0;
+
 	gr_start(GrDriver, GrMode, ErrorCode);
-	Square square(500, 600, 600, 500);
+
 	square.spawn();
 	Powerup powerup;
 	powerup.setup(500, 500);
 	powerup.spawn();
 	lvl1circsetup();
 	lvl1endzonesetup();
-	powerup.spawn();
-	while (true)
-	{
-		cleardevice();
-		lvl1endzonesetup();
-		if (kbhit())
-		{
 
-			key = getch();
-			cout << key << '\n';
-			square.translate(key);
-		}
-		else
-		{
-			lvl1endzonesetup();
-			square.spawn();
-		}
+	
+	while (true){
+		
+		tick();
 		lvl1circupdate();
 		powerup.spawn();
 		Sleep(45);
 	}
-	
-
 }
-
-void tick(Square square)
-{
-
-}
-
 
 
 
