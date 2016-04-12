@@ -15,7 +15,7 @@ struct Square
 
 		void spawn()
 		{
-			setcolor(15);
+			setcolor(4);
 			bar(left, top, right, bottom);
 		}
 
