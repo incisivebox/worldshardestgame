@@ -60,7 +60,7 @@ void main()
 	gr_start(GrDriver, GrMode, ErrorCode);
 
 	square.spawn();
-	powerup.setup(500, 500);
+	powerup.setup(500, 500, true);
 	powerup.spawn();
 	lvl1circsetup();
 	lvl1endzonesetup();
