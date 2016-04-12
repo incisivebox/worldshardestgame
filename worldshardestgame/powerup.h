@@ -1,18 +1,27 @@
 struct Powerup
 {
 	int x, y;
+	bool draw;
 
-	void setup(int powx, int powy)
+	void setup(int powx, int powy, bool show)
 	{
 		x = powx;
 		y = powy;
+		draw = show;
 	}
 
 	void spawn()
 	{
-		setcolor(14);
-		fillellipse(x, y, 10, 10);
+
+		if (draw)
+		{
+			setcolor(14);
+			fillellipse(x, y, 10, 10);
+		}
 	}
 
-	void collect();
+	void collect()
+	{
+		draw = false;
+	}
 }powerup;
