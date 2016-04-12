@@ -15,4 +15,4 @@ struct Powerup
 	}
 
 	void collect();
-};
+}powerup;

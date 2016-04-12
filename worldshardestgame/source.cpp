@@ -32,7 +32,6 @@ void gr_start(int &GrDriver, int &GrMode, int &ErrorCode)
 	}
 }
 
-Square square(500, 600, 600, 500);
 
 void updatecirc(){
 	while (true){
@@ -61,7 +60,6 @@ void main()
 	gr_start(GrDriver, GrMode, ErrorCode);
 
 	square.spawn();
-	Powerup powerup;
 	powerup.setup(500, 500);
 	powerup.spawn();
 	lvl1circsetup();
