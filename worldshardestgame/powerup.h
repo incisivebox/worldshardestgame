@@ -10,7 +10,7 @@ struct Powerup
 
 	void spawn()
 	{
-		setcolor(4);
+		setcolor(14);
 		fillellipse(x, y, 10, 10);
 	}
 
