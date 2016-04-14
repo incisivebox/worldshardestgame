@@ -54,4 +54,4 @@ struct Square
 
 		
 		
-}square(500, 600, 600, 500);
+}square(100, 600, 200, 500);
