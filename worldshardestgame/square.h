@@ -2,6 +2,7 @@
 struct Square
 {
 		int left, top, right, bottom;
+		int height, width;
 		
 
 		Square(int rectleft, int recttop, int rectright, int rectbottom)
@@ -10,6 +11,8 @@ struct Square
 			top = recttop;
 			right = rectright;
 			bottom = rectbottom;
+			height = bottom - top;
+			width = right - left;
 		}
 
 
@@ -52,6 +55,24 @@ struct Square
 			spawn();
 		}
 
+
 		
 		
 }square(500, 600, 600, 500);
+
+double clamp(double x, double upper, double lower)
+{
+	return min(upper, max(x, lower));
+}
+
+bool collision(Square square, Circle circle)
+{
+	float closestx = clamp(circle.x, square.left, square.right);
+	float closesty = clamp(circle.y, square.top, square.bottom);
+
+	float distancex = circle.x - closestx;
+	float distancey = circle.y - closesty;
+
+	float distancesquared = (distancex * distancex) + (distancey * distancey);
+	return distancesquared < (circle.radius * circle.radius);
+}
