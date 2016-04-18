@@ -33,6 +33,8 @@ void gr_start(int &GrDriver, int &GrMode, int &ErrorCode)
 	}
 }
 
+int speed = 10;
+
 void KEY_LISTENER();
 bool KEYBOARD(int);
 INPUT_RECORD irInBuf;
@@ -42,6 +44,7 @@ struct Pass {
 	bool hold = false;
 	int VirtualKey;
 	POINT p;
+
 }global;
 
 /*void updatecirc(){
@@ -54,13 +57,10 @@ struct Pass {
 int key = 0;
 
 void tick(){		
-		while (kbhit())
-			{
 				square.erase();
 				lvl1endzonesetup();
 				key = getch();
 				square.translate(key);
-			}
 }
 
 void game(){
@@ -75,12 +75,12 @@ void game(){
 
 
 	while (true){
-		tick();
 		lvl1circupdate();
 		powerup.spawn();
 		Sleep(45);
 	}
 
+	closegraph();
 }
 
 void main()
@@ -102,7 +102,7 @@ bool KEYBOARD(int VirtualKey){
 		global.VirtualKey = VirtualKey;
 		int count = 0;
 		do{
-			if (count++ > 1000){
+			if (count++ > 10000){
 				global.hold = true;
 			}
 		} while ((GetAsyncKeyState(VirtualKey) & 0x8000) != 0);
@@ -112,34 +112,48 @@ bool KEYBOARD(int VirtualKey){
 }
 
 void KEY_LISTENER(){
-int 	speed = 10;
+
 	while (true){
+		global.hold = global.press = false;
 		if (KEYBOARD(VK_S)){
+			square.erase();
 			square.top += speed;
 			square.bottom += speed;
-			square.erase();
 			square.spawn();
+			while (global.hold && (GetAsyncKeyState(VK_S) & 0x8000) != 0){
+				cout << "WOOT";
+			}
 		}
 		if (KEYBOARD(VK_W)){
+			square.erase();
 			square.top -= speed;
 			square.bottom -= speed;
-			square.erase();
 			square.spawn();
+			while (global.hold && (GetAsyncKeyState(VK_W) & 0x8000) != 0){
+				cout << "WOOT";
+			}
 		}
 		if (KEYBOARD(VK_A)){
+			square.erase();
 			square.left -= speed;
 			square.right -= speed;
-			square.erase();
 			square.spawn();
+			while (global.hold && (GetAsyncKeyState(VK_A) & 0x8000) != 0){
+				cout << "WOOT";
+			}
 		}
 		if (KEYBOARD(VK_D)){
+			square.erase();
 			square.left += speed;
 			square.right += speed;
-			square.erase();
 			square.spawn();
+			while (global.hold && (GetAsyncKeyState(VK_D) & 0x8000) != 0){
+				cout << "WOOT";
+			}
 		}
-	
+
 	}
+
 }
 
 
