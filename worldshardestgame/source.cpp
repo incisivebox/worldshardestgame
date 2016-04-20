@@ -33,7 +33,7 @@ void gr_start(int &GrDriver, int &GrMode, int &ErrorCode)
 	}
 }
 
-int speed = 10;
+int speed = 8;
 
 void KEY_LISTENER();
 bool KEYBOARD(int);
@@ -102,8 +102,9 @@ bool KEYBOARD(int VirtualKey){
 		global.VirtualKey = VirtualKey;
 		int count = 0;
 		do{
-			if (count++ > 10000){
+			if (count++ > 1000){
 				global.hold = true;
+				return true;
 			}
 		} while ((GetAsyncKeyState(VirtualKey) & 0x8000) != 0);
 		return true;
@@ -117,38 +118,110 @@ void KEY_LISTENER(){
 		global.hold = global.press = false;
 		if (KEYBOARD(VK_S)){
 			square.erase();
-			square.top += speed;
-			square.bottom += speed;
+			square.top += speed - 5;
+			square.bottom += speed - 5;
 			square.spawn();
-			while (global.hold && (GetAsyncKeyState(VK_S) & 0x8000) != 0){
-				cout << "WOOT";
+			while (global.hold && (GetAsyncKeyState(VK_S) & 0x8000)){
+				square.erase();
+				square.top += speed ;
+				square.bottom += speed ;
+				square.spawn();
+				Sleep(50);
+				if ((GetAsyncKeyState(VK_D) & 0x8000)){
+					square.erase();
+					square.left += speed;
+					square.right += speed;
+					square.spawn();
+					Sleep(1);
+				}
+				if ((GetAsyncKeyState(VK_A) & 0x8000)){
+					square.erase();
+					square.left -= speed;
+					square.right -= speed;
+					square.spawn();
+					Sleep(1);
+				}
 			}
 		}
 		if (KEYBOARD(VK_W)){
 			square.erase();
-			square.top -= speed;
-			square.bottom -= speed;
+			square.top -= speed - 5;
+			square.bottom -= speed - 5;
 			square.spawn();
-			while (global.hold && (GetAsyncKeyState(VK_W) & 0x8000) != 0){
-				cout << "WOOT";
+			while (global.hold && (GetAsyncKeyState(VK_W) & 0x8000)){
+				square.erase();
+				square.top -= speed;
+				square.bottom -= speed;
+				square.spawn();
+				Sleep(50);
+				if ((GetAsyncKeyState(VK_D) & 0x8000)){
+					square.erase();
+					square.left += speed;
+					square.right += speed;
+					square.spawn();
+					Sleep(1);
+				}
+				if ((GetAsyncKeyState(VK_A) & 0x8000)){
+					square.erase();
+					square.left -= speed;
+					square.right -= speed;
+					square.spawn();
+					Sleep(1);
+				}
 			}
 		}
 		if (KEYBOARD(VK_A)){
 			square.erase();
-			square.left -= speed;
-			square.right -= speed;
+			square.left -= speed - 5;
+			square.right -= speed - 5;
 			square.spawn();
-			while (global.hold && (GetAsyncKeyState(VK_A) & 0x8000) != 0){
-				cout << "WOOT";
+			while (global.hold && (GetAsyncKeyState(VK_A) & 0x8000)){
+				square.erase();
+				square.left -= speed;
+				square.right -= speed;
+				square.spawn();
+				Sleep(50);
+				if ((GetAsyncKeyState(VK_W) & 0x8000)){
+					square.erase();
+					square.top -= speed;
+					square.bottom -= speed;
+					square.spawn();
+					Sleep(1);
+				}
+				if ((GetAsyncKeyState(VK_S) & 0x8000)){
+					square.erase();
+					square.top += speed;
+					square.bottom += speed;
+					square.spawn();
+					Sleep(1);
+				}
 			}
 		}
 		if (KEYBOARD(VK_D)){
 			square.erase();
-			square.left += speed;
-			square.right += speed;
+			square.left += speed - 5;
+			square.right += speed -5;
 			square.spawn();
-			while (global.hold && (GetAsyncKeyState(VK_D) & 0x8000) != 0){
-				cout << "WOOT";
+			while (global.hold && (GetAsyncKeyState(VK_D) & 0x8000)){
+				square.erase();
+				square.left += speed;
+				square.right += speed;
+				square.spawn();
+				Sleep(50);
+				if ((GetAsyncKeyState(VK_W) & 0x8000)){
+					square.erase();
+					square.top -= speed;
+					square.bottom -= speed;
+					square.spawn();
+					Sleep(1);
+				}
+				if ((GetAsyncKeyState(VK_S) & 0x8000)){
+					square.erase();
+					square.top += speed;
+					square.bottom += speed;
+					square.spawn();
+					Sleep(1);
+				}
 			}
 		}
 
