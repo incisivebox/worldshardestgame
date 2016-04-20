@@ -5,8 +5,8 @@
 #include <ctime>
 #include <thread>
 #include <math.h>
-#include "square.h"
 #include "circle.h"
+#include "square.h"
 #include "endzone.h"
 #include "powerup.h"
 #include "VirtualKeys.h"
@@ -61,6 +61,18 @@ void tick(){
 				lvl1endzonesetup();
 				key = getch();
 				square.translate(key);
+		for (int i = 0; i < 12; i++) //value is currently hardcoded
+		{
+			bool collide = circlecollision(square);
+			if (collide)
+			{
+				cout << "Collide!" << '\n';
+				break;
+			}
+			
+
+		}
+
 }
 
 void game(){
@@ -77,6 +89,17 @@ void game(){
 	while (true){
 		lvl1circupdate();
 		powerup.spawn();
+		for (int i = 0; i < 12; i++) //value is currently hardcoded
+		{
+			bool collide = circlecollision(square);
+			if (collide)
+			{
+				cout << "Collide!" << '\n';
+				break;
+			}
+
+
+		}
 		Sleep(45);
 	}
 

@@ -3,6 +3,7 @@ struct Circle{
 	int x;
 	int y;
 	bool dir;
+	int radius = 30;
 
 }circ[12];
 
