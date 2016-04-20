@@ -5,8 +5,9 @@
 #include <ctime>
 #include <thread>
 #include <math.h>
-#include "square.h"
+#include <amp.h>
 #include "circle.h"
+#include "square.h"
 #include "endzone.h"
 #include "powerup.h"
 
@@ -50,6 +51,17 @@ void tick(){
 				key = getch();
 				square.translate(key);
 			}
+		for (int i = 0; i < 12; i++) //value is currently hardcoded
+		{
+			bool collide = circlecollision(square);
+			if (collide)
+			{
+				cout << "Collide!" << '\n';
+				break;
+			}
+			
+
+		}
 }
 
 

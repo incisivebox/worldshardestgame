@@ -2,6 +2,7 @@
 struct Square
 {
 		int left, top, right, bottom;
+		int height, width;
 		
 
 		Square(int rectleft, int recttop, int rectright, int rectbottom)
@@ -10,6 +11,8 @@ struct Square
 			top = recttop;
 			right = rectright;
 			bottom = rectbottom;
+			height = bottom - top;
+			width = right - left;
 		}
 
 
@@ -52,6 +55,42 @@ struct Square
 			spawn();
 		}
 
+
 		
 		
 }square(500, 600, 600, 500);
+
+double clamp(double x, double upper, double lower)
+{
+	return min(upper, max(x, lower));
+}
+
+bool circlecollision(Square square)
+{
+	for (int i = square.left; i < square.right; i++)
+	{
+		if (getpixel(i, square.top + 1) == 1)
+		{
+			return true;
+		}
+
+		else if (getpixel(i, square.bottom - 1) == 1)
+		{
+			return true;
+		}
+	}
+
+	for (int i = square.top; i < square.bottom; i++)
+	{
+		if (getpixel(square.left - 1, i) == 1)
+		{
+			return true;
+		}
+		
+		else if (getpixel(square.right + 1, i) == 1)
+		{
+			return true;
+		}
+	}
+	return false;
+}
