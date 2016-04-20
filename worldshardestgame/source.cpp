@@ -53,7 +53,7 @@ void tick(){
 			}
 		for (int i = 0; i < 12; i++) //value is currently hardcoded
 		{
-			bool collide = collision(square, circ[i]);
+			bool collide = circlecollision(square);
 			if (collide)
 			{
 				cout << "Collide!" << '\n';

@@ -65,14 +65,32 @@ double clamp(double x, double upper, double lower)
 	return min(upper, max(x, lower));
 }
 
-bool collision(Square square, Circle circle)
+bool circlecollision(Square square)
 {
-	float closestx = clamp(circle.x, square.left, square.right);
-	float closesty = clamp(circle.y, square.top, square.bottom);
+	for (int i = square.left; i < square.right; i++)
+	{
+		if (getpixel(i, square.top + 1) == 1)
+		{
+			return true;
+		}
 
-	float distancex = circle.x - closestx;
-	float distancey = circle.y - closesty;
+		else if (getpixel(i, square.bottom - 1) == 1)
+		{
+			return true;
+		}
+	}
 
-	float distancesquared = (distancex * distancex) + (distancey * distancey);
-	return distancesquared < (circle.radius * circle.radius);
+	for (int i = square.top; i < square.bottom; i++)
+	{
+		if (getpixel(square.left - 1, i) == 1)
+		{
+			return true;
+		}
+		
+		else if (getpixel(square.right + 1, i) == 1)
+		{
+			return true;
+		}
+	}
+	return false;
 }
