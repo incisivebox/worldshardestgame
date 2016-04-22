@@ -94,3 +94,33 @@ bool circlecollision(Square square)
 	}
 	return false;
 }
+
+bool powerupcollision(Square square)
+{
+	for (int i = square.left; i < square.right; i++)
+	{
+		if (getpixel(i, square.top + 1) == 14)
+		{
+			return true;
+		}
+
+		else if (getpixel(i, square.bottom - 1) == 14)
+		{
+			return true;
+		}
+	}
+
+	for (int i = square.top; i < square.bottom; i++)
+	{
+		if (getpixel(square.left - 1, i) == 14)
+		{
+			return true;
+		}
+
+		else if (getpixel(square.right + 1, i) == 14)
+		{
+			return true;
+		}
+	}
+	return false;
+}
