@@ -7,9 +7,9 @@
 #include <math.h>
 #include <amp.h>
 #include "circle.h"
-#include "square.h"
 #include "endzone.h"
 #include "powerup.h"
+#include "square.h"
 
 using namespace std;
 
@@ -44,24 +44,34 @@ void updatecirc(){
 int key = 0;
 
 void tick(){		
-		while (kbhit())
-			{
-				square.erase();
-				lvl1endzonesetup();
-				key = getch();
-				square.translate(key);
-			}
-		for (int i = 0; i < 12; i++) //value is currently hardcoded
+	while (kbhit())
+	{
+		square.erase();
+		lvl1endzonesetup();
+		key = getch();
+		square.translate(key);
+	}
+		bool collide = circlecollision(square);
+		if (collide)
 		{
-			bool collide = circlecollision(square);
-			if (collide)
-			{
-				cout << "Collide!" << '\n';
-				break;
-			}
+			cout << "Collide!" << '\n';
+		}
+
+		collide = powerupcollision(square);
+		if (collide)
+		{
+			cout << "Collide! - powerup" << '\n';
+		}
+
+		collide = endzonecollision(square);
+		if (collide)
+		{
+			cout << "Collide!" << '\n';
+		}
+
 			
 
-		}
+		
 }
 
 

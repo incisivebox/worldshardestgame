@@ -122,5 +122,38 @@ bool powerupcollision(Square square)
 			return true;
 		}
 	}
+
+	powerup.collect();
+	return false;
+}
+
+bool endzonecollision(Square square)
+{
+	for (int i = square.left; i < square.right; i++)
+	{
+		if (getpixel(i, square.top + 1) == 2)
+		{
+			return true;
+		}
+
+		else if (getpixel(i, square.bottom - 1) == 2)
+		{
+			return true;
+		}
+	}
+
+	for (int i = square.top; i < square.bottom; i++)
+	{
+		if (getpixel(square.left - 1, i) == 2)
+		{
+			return true;
+		}
+
+		else if (getpixel(square.right + 1, i) == 2)
+		{
+			return true;
+		}
+	}
+
 	return false;
 }
