@@ -57,6 +57,7 @@ struct Pass {
 
 int key = 0;
 
+bool win = false;
 /*
 void tick(){		
 				square.erase();
@@ -108,22 +109,37 @@ void game(){
 	lvl1endzonesetup();
 	global.go = true;
 
+	
 	while (true){
 		lvl1circupdate();
 	
-		for (int i = 0; i < 12; i++) //value is currently hardcoded
-		{
+		
 			bool collide = circlecollision();
 			if (collide)
 			{
 				cout << "Collide!" << '\n';
 				cleardevice();
+				powerup.draw = true;
+				win = false;
 				square.reset(100, 600, 200, 500);
-				break;
+				
 			}
+			
 
-
+		if (powerupcollision())
+		{
+			win = true;
 		}
+
+		if (win)
+		{
+			if (endzonecollision())
+			{
+				cout << "YOU WIN" << '\n';
+			}
+		}
+
+		
 		Sleep(45);
 	}
 

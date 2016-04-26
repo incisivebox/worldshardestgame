@@ -95,7 +95,7 @@ bool circlecollision()
 
 
 
-bool powerupcollision(Square square)
+bool powerupcollision()
 {
 	for (int i = square.left; i < square.right; i++)
 	{
@@ -130,7 +130,7 @@ bool powerupcollision(Square square)
 	return false;
 }
 
-bool endzonecollision(Square square)
+bool endzonecollision()
 {
 	for (int i = square.left; i < square.right; i++)
 	{
