@@ -51,11 +51,19 @@ struct Square
 			spawn();
 		}
 
+		void reset(int startleft, int starttop, int startright, int startbottom)
+		{
+			left = startleft;
+			top = starttop;
+			right = startright;
+			bottom = startbottom;
+		}
+
 
 		
 }square(100, 600, 200, 500);
 
-bool circlecollision(Square square)
+bool circlecollision()
 {
 	for (int i = square.left; i < square.right; i++)
 	{
@@ -93,11 +101,13 @@ bool powerupcollision(Square square)
 	{
 		if (getpixel(i, square.top + 1) == 14)
 		{
+			powerup.collect();
 			return true;
 		}
 
 		else if (getpixel(i, square.bottom - 1) == 14)
 		{
+			powerup.collect();
 			return true;
 		}
 	}
@@ -106,16 +116,17 @@ bool powerupcollision(Square square)
 	{
 		if (getpixel(square.left - 1, i) == 14)
 		{
+
+			powerup.collect();
 			return true;
 		}
 
 		else if (getpixel(square.right + 1, i) == 14)
 		{
+			powerup.collect();
 			return true;
 		}
 	}
-
-	powerup.collect();
 	return false;
 }
 

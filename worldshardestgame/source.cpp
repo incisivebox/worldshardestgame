@@ -113,10 +113,12 @@ void game(){
 	
 		for (int i = 0; i < 12; i++) //value is currently hardcoded
 		{
-			bool collide = circlecollision(square);
+			bool collide = circlecollision();
 			if (collide)
 			{
 				cout << "Collide!" << '\n';
+				cleardevice();
+				square.reset(100, 600, 200, 500);
 				break;
 			}
 
