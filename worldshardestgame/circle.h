@@ -28,11 +28,12 @@ void lvl1circsetup(){
 	}
 
 }
+bool change;
+int prevy1, prevy2;
 
 void lvl1circupdate(){
 	for (int i = 0; i < 12; i++){
-		setcolor(0);
-		fillellipse(circ[i].x, circ[i].y, 30,30);
+		
 		//Move circle
 		if (circ[i].dir == true){
 			circ[i].y += 16;
@@ -49,7 +50,28 @@ void lvl1circupdate(){
 			circ[i].dir = true;
 		}
 		//Print update circle
-		setcolor(1);
-		fillellipse(circ[i].x, circ[i].y, 30,30);
+
 	}
+	change = true;
+}
+
+void lvl1circprint(){
+	if (change){
+		for (int i = 0; i < 12; i++){
+			if (circ[i].dir){
+				setcolor(0);
+				fillellipse(circ[i].x, circ[i].y-16, 30, 30);
+			}
+			else {
+				setcolor(0);
+				fillellipse(circ[i].x, circ[i].y+16, 30, 30);
+			}
+			setcolor(1);
+			fillellipse(circ[i].x, circ[i].y, 30, 30);
+		}
+
+		change = false;
+	}
+
+
 }

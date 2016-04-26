@@ -45,7 +45,7 @@ struct Pass {
 	bool hold = false;
 	int VirtualKey;
 	POINT p;
-
+	bool go = false;
 }global;
 
 /*void updatecirc(){
@@ -106,11 +106,11 @@ void game(){
 	powerup.spawn();
 	lvl1circsetup();
 	lvl1endzonesetup();
-
+	global.go = true;
 
 	while (true){
 		lvl1circupdate();
-		powerup.spawn();
+	
 		for (int i = 0; i < 12; i++) //value is currently hardcoded
 		{
 			bool collide = circlecollision(square);
@@ -158,120 +158,155 @@ bool KEYBOARD(int VirtualKey){
 }
 
 void KEY_LISTENER(){
-
 	while (true){
-		global.hold = global.press = false;
-		if (KEYBOARD(VK_S)){
-			square.erase();
-			square.top += speed - 5;
-			square.bottom += speed - 5;
-			square.spawn();
-			while (global.hold && (GetAsyncKeyState(VK_S) & 0x8000)){
-				square.erase();
-				square.top += speed ;
-				square.bottom += speed ;
-				square.spawn();
-				Sleep(50);
-				if ((GetAsyncKeyState(VK_D) & 0x8000)){
+		while (global.go){
+			while (true){
+				global.hold = global.press = false;
+				if (KEYBOARD(VK_S)){
 					square.erase();
-					square.left += speed;
-					square.right += speed;
+					square.top += speed - 5;
+					square.bottom += speed - 5;
 					square.spawn();
-					Sleep(1);
+					powerup.spawn();
+					lvl1circprint();
+					while (global.hold && (GetAsyncKeyState(VK_S) & 0x8000)){
+						square.erase();
+						square.top += speed;
+						square.bottom += speed;
+						square.spawn();
+						powerup.spawn();
+						lvl1circprint();
+						Sleep(50);
+						if ((GetAsyncKeyState(VK_D) & 0x8000)){
+							square.erase();
+							square.left += speed;
+							square.right += speed;
+							square.spawn();
+							powerup.spawn();
+							lvl1circprint();
+							Sleep(1);
+						}
+						if ((GetAsyncKeyState(VK_A) & 0x8000)){
+							square.erase();
+							square.left -= speed;
+							square.right -= speed;
+							square.spawn();
+							powerup.spawn();
+							lvl1circprint();
+							Sleep(1);
+						}
+					}
 				}
-				if ((GetAsyncKeyState(VK_A) & 0x8000)){
+				if (KEYBOARD(VK_W)){
 					square.erase();
-					square.left -= speed;
-					square.right -= speed;
+					square.top -= speed - 5;
+					square.bottom -= speed - 5;
 					square.spawn();
-					Sleep(1);
+					powerup.spawn();
+					lvl1circprint();
+					while (global.hold && (GetAsyncKeyState(VK_W) & 0x8000)){
+						square.erase();
+						square.top -= speed;
+						square.bottom -= speed;
+						square.spawn();
+						powerup.spawn();
+						lvl1circprint();
+						Sleep(50);
+						if ((GetAsyncKeyState(VK_D) & 0x8000)){
+							square.erase();
+							square.left += speed;
+							square.right += speed;
+							square.spawn();
+							powerup.spawn();
+							lvl1circprint();
+							Sleep(1);
+						}
+						if ((GetAsyncKeyState(VK_A) & 0x8000)){
+							square.erase();
+							square.left -= speed;
+							square.right -= speed;
+							square.spawn();
+							powerup.spawn();
+							lvl1circprint();
+							Sleep(1);
+						}
+					}
 				}
+				if (KEYBOARD(VK_A)){
+					square.erase();
+					square.left -= speed - 5;
+					square.right -= speed - 5;
+					square.spawn();
+					powerup.spawn();
+					lvl1circprint();
+					while (global.hold && (GetAsyncKeyState(VK_A) & 0x8000)){
+						square.erase();
+						square.left -= speed;
+						square.right -= speed;
+						square.spawn();
+						powerup.spawn();
+						lvl1circprint();
+						Sleep(50);
+						if ((GetAsyncKeyState(VK_W) & 0x8000)){
+							square.erase();
+							square.top -= speed;
+							square.bottom -= speed;
+							square.spawn();
+							powerup.spawn();
+							lvl1circprint();
+							Sleep(1);
+						}
+						if ((GetAsyncKeyState(VK_S) & 0x8000)){
+							square.erase();
+							square.top += speed;
+							square.bottom += speed;
+							square.spawn();
+							powerup.spawn();
+							lvl1circprint();
+							Sleep(1);
+						}
+					}
+				}
+				if (KEYBOARD(VK_D)){
+					square.erase();
+					square.left += speed - 5;
+					square.right += speed - 5;
+					square.spawn();
+					powerup.spawn();
+					lvl1circprint();
+					while (global.hold && (GetAsyncKeyState(VK_D) & 0x8000)){
+						square.erase();
+						square.left += speed;
+						square.right += speed;
+						square.spawn();
+						powerup.spawn();
+						lvl1circprint();
+						Sleep(50);
+						if ((GetAsyncKeyState(VK_W) & 0x8000)){
+							square.erase();
+							square.top -= speed;
+							square.bottom -= speed;
+							square.spawn();
+							powerup.spawn();
+							lvl1circprint();
+							Sleep(1);
+						}
+						if ((GetAsyncKeyState(VK_S) & 0x8000)){
+							square.erase();
+							square.top += speed;
+							square.bottom += speed;
+							square.spawn();
+							powerup.spawn();
+							lvl1circprint();
+							Sleep(1);
+						}
+					}
+				}
+				powerup.spawn();
+				lvl1circprint();
 			}
 		}
-		if (KEYBOARD(VK_W)){
-			square.erase();
-			square.top -= speed - 5;
-			square.bottom -= speed - 5;
-			square.spawn();
-			while (global.hold && (GetAsyncKeyState(VK_W) & 0x8000)){
-				square.erase();
-				square.top -= speed;
-				square.bottom -= speed;
-				square.spawn();
-				Sleep(50);
-				if ((GetAsyncKeyState(VK_D) & 0x8000)){
-					square.erase();
-					square.left += speed;
-					square.right += speed;
-					square.spawn();
-					Sleep(1);
-				}
-				if ((GetAsyncKeyState(VK_A) & 0x8000)){
-					square.erase();
-					square.left -= speed;
-					square.right -= speed;
-					square.spawn();
-					Sleep(1);
-				}
-			}
-		}
-		if (KEYBOARD(VK_A)){
-			square.erase();
-			square.left -= speed - 5;
-			square.right -= speed - 5;
-			square.spawn();
-			while (global.hold && (GetAsyncKeyState(VK_A) & 0x8000)){
-				square.erase();
-				square.left -= speed;
-				square.right -= speed;
-				square.spawn();
-				Sleep(50);
-				if ((GetAsyncKeyState(VK_W) & 0x8000)){
-					square.erase();
-					square.top -= speed;
-					square.bottom -= speed;
-					square.spawn();
-					Sleep(1);
-				}
-				if ((GetAsyncKeyState(VK_S) & 0x8000)){
-					square.erase();
-					square.top += speed;
-					square.bottom += speed;
-					square.spawn();
-					Sleep(1);
-				}
-			}
-		}
-		if (KEYBOARD(VK_D)){
-			square.erase();
-			square.left += speed - 5;
-			square.right += speed -5;
-			square.spawn();
-			while (global.hold && (GetAsyncKeyState(VK_D) & 0x8000)){
-				square.erase();
-				square.left += speed;
-				square.right += speed;
-				square.spawn();
-				Sleep(50);
-				if ((GetAsyncKeyState(VK_W) & 0x8000)){
-					square.erase();
-					square.top -= speed;
-					square.bottom -= speed;
-					square.spawn();
-					Sleep(1);
-				}
-				if ((GetAsyncKeyState(VK_S) & 0x8000)){
-					square.erase();
-					square.top += speed;
-					square.bottom += speed;
-					square.spawn();
-					Sleep(1);
-				}
-			}
-		}
-
 	}
-
 }
 
 
