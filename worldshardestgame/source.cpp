@@ -35,7 +35,7 @@ void gr_start(int &GrDriver, int &GrMode, int &ErrorCode)
 }
 
 int speed = 8;
-
+void PrintFuncts();
 void KEY_LISTENER();
 bool KEYBOARD(int);
 INPUT_RECORD irInBuf;
@@ -159,6 +159,14 @@ bool KEYBOARD(int VirtualKey){
 	return false;
 }
 
+void PrintFuncts(){
+
+	powerup.spawn();
+	lvl1circprint();
+	lvl1endzonesetup();
+	square.spawn();
+}
+
 void KEY_LISTENER(){
 	while (true){
 		while (global.go){
@@ -169,23 +177,27 @@ void KEY_LISTENER(){
 					square.top += speed - 5;
 					square.bottom += speed - 5;
 					square.spawn();
-					powerup.spawn();
-					lvl1circprint();
+					PrintFuncts();
 					while (global.hold && (GetAsyncKeyState(VK_S) & 0x8000)){
 						square.erase();
 						square.top += speed;
 						square.bottom += speed;
 						square.spawn();
-						powerup.spawn();
-						lvl1circprint();
-						Sleep(50);
+						PrintFuncts();
+						Sleep(10);
+						PrintFuncts();
+						Sleep(10);
+						PrintFuncts();
+						Sleep(10);
+						PrintFuncts();
+						Sleep(10);
+						PrintFuncts();
 						if ((GetAsyncKeyState(VK_D) & 0x8000)){
 							square.erase();
 							square.left += speed;
 							square.right += speed;
 							square.spawn();
-							powerup.spawn();
-							lvl1circprint();
+							PrintFuncts();
 							Sleep(1);
 						}
 						if ((GetAsyncKeyState(VK_A) & 0x8000)){
@@ -193,8 +205,7 @@ void KEY_LISTENER(){
 							square.left -= speed;
 							square.right -= speed;
 							square.spawn();
-							powerup.spawn();
-							lvl1circprint();
+							PrintFuncts();
 							Sleep(1);
 						}
 					}
@@ -204,23 +215,27 @@ void KEY_LISTENER(){
 					square.top -= speed - 5;
 					square.bottom -= speed - 5;
 					square.spawn();
-					powerup.spawn();
-					lvl1circprint();
+					PrintFuncts();
 					while (global.hold && (GetAsyncKeyState(VK_W) & 0x8000)){
 						square.erase();
 						square.top -= speed;
 						square.bottom -= speed;
 						square.spawn();
-						powerup.spawn();
-						lvl1circprint();
-						Sleep(50);
+						PrintFuncts();
+						Sleep(10);
+						PrintFuncts();
+						Sleep(10);
+						PrintFuncts();
+						Sleep(10);
+						PrintFuncts();
+						Sleep(10);
+						PrintFuncts();
 						if ((GetAsyncKeyState(VK_D) & 0x8000)){
 							square.erase();
 							square.left += speed;
 							square.right += speed;
 							square.spawn();
-							powerup.spawn();
-							lvl1circprint();
+							PrintFuncts();
 							Sleep(1);
 						}
 						if ((GetAsyncKeyState(VK_A) & 0x8000)){
@@ -228,8 +243,7 @@ void KEY_LISTENER(){
 							square.left -= speed;
 							square.right -= speed;
 							square.spawn();
-							powerup.spawn();
-							lvl1circprint();
+							PrintFuncts();
 							Sleep(1);
 						}
 					}
@@ -239,23 +253,27 @@ void KEY_LISTENER(){
 					square.left -= speed - 5;
 					square.right -= speed - 5;
 					square.spawn();
-					powerup.spawn();
-					lvl1circprint();
+					PrintFuncts();
 					while (global.hold && (GetAsyncKeyState(VK_A) & 0x8000)){
 						square.erase();
 						square.left -= speed;
 						square.right -= speed;
 						square.spawn();
-						powerup.spawn();
-						lvl1circprint();
-						Sleep(50);
+						PrintFuncts();
+						Sleep(10);
+						PrintFuncts();
+						Sleep(10);
+						PrintFuncts();
+						Sleep(10);
+						PrintFuncts();
+						Sleep(10);
+						PrintFuncts();
 						if ((GetAsyncKeyState(VK_W) & 0x8000)){
 							square.erase();
 							square.top -= speed;
 							square.bottom -= speed;
 							square.spawn();
-							powerup.spawn();
-							lvl1circprint();
+							PrintFuncts();
 							Sleep(1);
 						}
 						if ((GetAsyncKeyState(VK_S) & 0x8000)){
@@ -263,8 +281,7 @@ void KEY_LISTENER(){
 							square.top += speed;
 							square.bottom += speed;
 							square.spawn();
-							powerup.spawn();
-							lvl1circprint();
+							PrintFuncts();
 							Sleep(1);
 						}
 					}
@@ -274,23 +291,29 @@ void KEY_LISTENER(){
 					square.left += speed - 5;
 					square.right += speed - 5;
 					square.spawn();
-					powerup.spawn();
-					lvl1circprint();
+					PrintFuncts();
 					while (global.hold && (GetAsyncKeyState(VK_D) & 0x8000)){
 						square.erase();
 						square.left += speed;
 						square.right += speed;
 						square.spawn();
-						powerup.spawn();
-						lvl1circprint();
-						Sleep(50);
+										PrintFuncts();
+										Sleep(10);
+										PrintFuncts();
+										Sleep(10);
+										PrintFuncts();
+										Sleep(10);
+										PrintFuncts();
+										Sleep(10);
+										PrintFuncts();
+										Sleep(10);
+										PrintFuncts();
 						if ((GetAsyncKeyState(VK_W) & 0x8000)){
 							square.erase();
 							square.top -= speed;
 							square.bottom -= speed;
 							square.spawn();
-							powerup.spawn();
-							lvl1circprint();
+							PrintFuncts();
 							Sleep(1);
 						}
 						if ((GetAsyncKeyState(VK_S) & 0x8000)){
@@ -298,14 +321,12 @@ void KEY_LISTENER(){
 							square.top += speed;
 							square.bottom += speed;
 							square.spawn();
-							powerup.spawn();
-							lvl1circprint();
+							PrintFuncts();
 							Sleep(1);
 						}
 					}
 				}
-				powerup.spawn();
-				lvl1circprint();
+				PrintFuncts();
 			}
 		}
 	}
