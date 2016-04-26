@@ -6,10 +6,11 @@
 #include <thread>
 #include <math.h>
 #include "circle.h"
-#include "square.h"
 #include "endzone.h"
 #include "powerup.h"
 #include "VirtualKeys.h"
+#include "square.h"
+
 
 using namespace std;
 
@@ -56,24 +57,45 @@ struct Pass {
 
 int key = 0;
 
+/*
 void tick(){		
 				square.erase();
 				lvl1endzonesetup();
 				key = getch();
 				square.translate(key);
 		for (int i = 0; i < 12; i++) //value is currently hardcoded
-		{
-			bool collide = circlecollision(square);
-			if (collide)
-			{
-				cout << "Collide!" << '\n';
-				break;
-			}
-			
 
+	while (kbhit())
+	{
+		square.erase();
+		lvl1endzonesetup();
+		key = getch();
+		square.translate(key);
+	}
+		bool collide = circlecollision(square);
+		if (collide)
+		{
+			cout << "Collide!" << '\n';
 		}
 
+		collide = powerupcollision(square);
+		if (collide)
+		{
+			cout << "Collide! - powerup" << '\n';
+		}
+
+		collide = endzonecollision(square);
+		if (collide)
+		{
+			cout << "Collide!" << '\n';
+		}
+
+			
+
+		
 }
+*/
+
 
 void game(){
 	
