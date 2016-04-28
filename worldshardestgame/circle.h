@@ -12,7 +12,8 @@ void lvl1circsetup(){
 	circ[0].x = 300;
 	circ[0].y = 100;
 	circ[0].dir = true;
-	circle(circ[0].x, circ[0].y, 30);
+	setcolor(1);
+	fillellipse(circ[0].x, circ[0].y, 30,30);
 
 	for (int i = 1; i < 12; i++){
 		circ[i].x = circ[i - 1].x + 110;

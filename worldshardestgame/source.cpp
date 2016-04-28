@@ -183,8 +183,8 @@ void KEY_LISTENER(){
 						square.top += speed;
 						square.bottom += speed;
 						square.spawn();
-						PrintFuncts();
-						Sleep(10);
+						//PrintFuncts();
+						//Sleep(10);
 						PrintFuncts();
 						Sleep(10);
 						PrintFuncts();
@@ -221,8 +221,8 @@ void KEY_LISTENER(){
 						square.top -= speed;
 						square.bottom -= speed;
 						square.spawn();
-						PrintFuncts();
-						Sleep(10);
+						//PrintFuncts();
+						//Sleep(10);
 						PrintFuncts();
 						Sleep(10);
 						PrintFuncts();
@@ -259,8 +259,8 @@ void KEY_LISTENER(){
 						square.left -= speed;
 						square.right -= speed;
 						square.spawn();
-						PrintFuncts();
-						Sleep(10);
+						//PrintFuncts();
+					//	Sleep(10);
 						PrintFuncts();
 						Sleep(10);
 						PrintFuncts();
@@ -297,10 +297,10 @@ void KEY_LISTENER(){
 						square.left += speed;
 						square.right += speed;
 						square.spawn();
-										PrintFuncts();
-										Sleep(10);
-										PrintFuncts();
-										Sleep(10);
+									//	PrintFuncts();
+									//	Sleep(10);
+									//	PrintFuncts();
+									//	Sleep(10);
 										PrintFuncts();
 										Sleep(10);
 										PrintFuncts();
@@ -326,7 +326,9 @@ void KEY_LISTENER(){
 						}
 					}
 				}
-				PrintFuncts();
+				if (change){
+					PrintFuncts();
+				}
 			}
 		}
 	}
