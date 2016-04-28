@@ -1,3 +1,5 @@
+
+
 #include <iostream>
 #include <string>
 #include <graphics.h>
@@ -96,13 +98,12 @@ void tick(){
 }
 */
 
-
 void game(){
 	
 	gr_start(GrDriver, GrMode, ErrorCode);
 
 	square.spawn();
-	powerup.setup(500, 500, true);
+	powerup.setup(800, 500, true);
 	powerup.spawn();
 	lvl1circsetup();
 	lvl1endzonesetup();
@@ -111,19 +112,25 @@ void game(){
 	while (true){
 		lvl1circupdate();
 	
-		for (int i = 0; i < 12; i++) //value is currently hardcoded
-		{
-			bool collide = circlecollision();
+		
+		
+			bool collide = circlecollision(circ, 12);
 			if (collide)
 			{
 				cout << "Collide!" << '\n';
 				cleardevice();
 				square.reset(100, 600, 200, 500);
-				break;
+				cleardevice();
+			}
+
+			if (powerupcollision)
+			{
+				powerup.collect();
 			}
 
 
-		}
+
+		
 		Sleep(45);
 	}
 
