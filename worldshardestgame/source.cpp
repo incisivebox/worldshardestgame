@@ -100,7 +100,7 @@ void tick(){
 void game(){
 	
 	gr_start(GrDriver, GrMode, ErrorCode);
-
+	setbkcolor(0);
 	square.spawn();
 	powerup.setup(500, 500, true);
 	powerup.spawn();
@@ -110,20 +110,15 @@ void game(){
 
 	while (true){
 		lvl1circupdate();
-	
-		for (int i = 0; i < 12; i++) //value is currently hardcoded
-		{
-			bool collide = circlecollision();
+
+/*			bool collide = circlecollision();
 			if (collide)
 			{
-				cout << "Collide!" << '\n';
-				cleardevice();
-				square.reset(100, 600, 200, 500);
-				break;
+				//cout << "Collide!" << '\n';
+				//cleardevice();
+				//wsquare.reset(100, 600, 200, 500);
 			}
-
-
-		}
+			*/
 		Sleep(45);
 	}
 
@@ -159,6 +154,8 @@ bool KEYBOARD(int VirtualKey){
 	return false;
 }
 
+
+
 void PrintFuncts(){
 
 	powerup.spawn();
@@ -172,13 +169,13 @@ void KEY_LISTENER(){
 		while (global.go){
 			while (true){
 				global.hold = global.press = false;
-				if (KEYBOARD(VK_S)){
+				if (KEYBOARD(VK_S) && square.top <= getmaxy()){
 					square.erase();
 					square.top += speed - 5;
 					square.bottom += speed - 5;
 					square.spawn();
 					PrintFuncts();
-					while (global.hold && (GetAsyncKeyState(VK_S) & 0x8000)){
+					while (global.hold && (GetAsyncKeyState(VK_S) & 0x8000) && square.top <= getmaxy()){
 						square.erase();
 						square.top += speed;
 						square.bottom += speed;
@@ -192,31 +189,31 @@ void KEY_LISTENER(){
 						PrintFuncts();
 						Sleep(10);
 						PrintFuncts();
-						if ((GetAsyncKeyState(VK_D) & 0x8000)){
+						if ((GetAsyncKeyState(VK_D) & 0x8000) && square.top <= getmaxy() && square.right <= getmaxx()){
 							square.erase();
 							square.left += speed;
 							square.right += speed;
 							square.spawn();
 							PrintFuncts();
-							Sleep(1);
+							Sleep(.5);
 						}
-						if ((GetAsyncKeyState(VK_A) & 0x8000)){
+						if ((GetAsyncKeyState(VK_A) & 0x8000) && square.top <= getmaxy() && square.left >= 0){
 							square.erase();
 							square.left -= speed;
 							square.right -= speed;
 							square.spawn();
 							PrintFuncts();
-							Sleep(1);
+							Sleep(.5);
 						}
 					}
 				}
-				if (KEYBOARD(VK_W)){
+				if (KEYBOARD(VK_W) && square.bottom >= 0){
 					square.erase();
 					square.top -= speed - 5;
 					square.bottom -= speed - 5;
 					square.spawn();
 					PrintFuncts();
-					while (global.hold && (GetAsyncKeyState(VK_W) & 0x8000)){
+					while (global.hold && (GetAsyncKeyState(VK_W) & 0x8000) && square.bottom >= 0){
 						square.erase();
 						square.top -= speed;
 						square.bottom -= speed;
@@ -230,31 +227,31 @@ void KEY_LISTENER(){
 						PrintFuncts();
 						Sleep(10);
 						PrintFuncts();
-						if ((GetAsyncKeyState(VK_D) & 0x8000)){
+						if ((GetAsyncKeyState(VK_D) & 0x8000) && square.bottom >= 0 && square.right <= getmaxx()){
 							square.erase();
 							square.left += speed;
 							square.right += speed;
 							square.spawn();
 							PrintFuncts();
-							Sleep(1);
+							Sleep(.5);
 						}
-						if ((GetAsyncKeyState(VK_A) & 0x8000)){
+						if ((GetAsyncKeyState(VK_A) & 0x8000) && square.bottom >= 0 && square.left >= 0){
 							square.erase();
 							square.left -= speed;
 							square.right -= speed;
 							square.spawn();
 							PrintFuncts();
-							Sleep(1);
+							Sleep(.5);
 						}
 					}
 				}
-				if (KEYBOARD(VK_A)){
+				if (KEYBOARD(VK_A) && square.left >= 0){
 					square.erase();
 					square.left -= speed - 5;
 					square.right -= speed - 5;
 					square.spawn();
 					PrintFuncts();
-					while (global.hold && (GetAsyncKeyState(VK_A) & 0x8000)){
+					while (global.hold && (GetAsyncKeyState(VK_A) & 0x8000) && square.left >= 0){
 						square.erase();
 						square.left -= speed;
 						square.right -= speed;
@@ -268,31 +265,31 @@ void KEY_LISTENER(){
 						PrintFuncts();
 						Sleep(10);
 						PrintFuncts();
-						if ((GetAsyncKeyState(VK_W) & 0x8000)){
+						if ((GetAsyncKeyState(VK_W) & 0x8000) && square.left >= 0 && square.bottom >= 0){
 							square.erase();
 							square.top -= speed;
 							square.bottom -= speed;
 							square.spawn();
 							PrintFuncts();
-							Sleep(1);
+							Sleep(.5);
 						}
-						if ((GetAsyncKeyState(VK_S) & 0x8000)){
+						if ((GetAsyncKeyState(VK_S) & 0x8000) && square.left >= 0 && square.top <= getmaxy()){
 							square.erase();
 							square.top += speed;
 							square.bottom += speed;
 							square.spawn();
 							PrintFuncts();
-							Sleep(1);
+							Sleep(.5);
 						}
 					}
 				}
-				if (KEYBOARD(VK_D)){
+				if (KEYBOARD(VK_D) && square.right <= getmaxx()){
 					square.erase();
 					square.left += speed - 5;
 					square.right += speed - 5;
 					square.spawn();
 					PrintFuncts();
-					while (global.hold && (GetAsyncKeyState(VK_D) & 0x8000)){
+					while (global.hold && (GetAsyncKeyState(VK_D) & 0x8000) && square.right <= getmaxx()){
 						square.erase();
 						square.left += speed;
 						square.right += speed;
@@ -301,28 +298,28 @@ void KEY_LISTENER(){
 									//	Sleep(10);
 									//	PrintFuncts();
 									//	Sleep(10);
-										PrintFuncts();
-										Sleep(10);
-										PrintFuncts();
-										Sleep(10);
-										PrintFuncts();
-										Sleep(10);
-										PrintFuncts();
-						if ((GetAsyncKeyState(VK_W) & 0x8000)){
+						PrintFuncts();
+						Sleep(10);
+						PrintFuncts();
+						Sleep(10);
+						PrintFuncts();
+						Sleep(10);
+						PrintFuncts();
+						if ((GetAsyncKeyState(VK_W) & 0x8000) && square.right <= getmaxx() && square.bottom >= 0){
 							square.erase();
 							square.top -= speed;
 							square.bottom -= speed;
 							square.spawn();
 							PrintFuncts();
-							Sleep(1);
+							Sleep(.5);
 						}
-						if ((GetAsyncKeyState(VK_S) & 0x8000)){
+							if ((GetAsyncKeyState(VK_S) & 0x8000) && square.top <= getmaxy() && square.right <= getmaxx()){
 							square.erase();
 							square.top += speed;
 							square.bottom += speed;
 							square.spawn();
 							PrintFuncts();
-							Sleep(1);
+							Sleep(.5);
 						}
 					}
 				}

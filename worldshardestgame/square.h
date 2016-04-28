@@ -63,7 +63,7 @@ struct Square
 		
 }square(100, 600, 200, 500);
 
-bool circlecollision()
+/*bool circlecollision()
 {
 	for (int i = square.left; i < square.right; i++)
 	{
@@ -77,17 +77,24 @@ bool circlecollision()
 			return true;
 		}
 	}
-
-	for (int i = square.top; i < square.bottom; i++)
+	
+	for (int i = square.bottom; i < square.top; i++)
 	{
 		if (getpixel(square.left - 1, i) == 1)
 		{
+			std:: cout << square.left-1 << "," << i << "   " << 1 << '\n';
 			return true;
 		}
 		
-		else if (getpixel(square.right + 1, i) == 1)
+	 if (getpixel(square.right + 1, i) == 1)
 		{
+		//	std::cout << square.left - 1 << "," << i << "  " << 2 << '\n';
+			std::cout << square.right + 1 << ", " << i << " \n";
+			putpixel(square.right + 1, i, 14);
+			if (getpixel(square.right + 1, i) == 1){
+				std::cout << getpixel(square.right + 1, i) << '\n';
 			return true;
+			}
 		}
 	}
 	return false;
@@ -159,4 +166,4 @@ bool endzonecollision(Square square)
 	}
 
 	return false;
-}
+}*/
