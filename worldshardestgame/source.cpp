@@ -36,6 +36,7 @@ void gr_start(int &GrDriver, int &GrMode, int &ErrorCode)
 	}
 }
 
+bool win = false;
 int speed = 8;
 void PrintFuncts();
 void KEY_LISTENER();
@@ -124,11 +125,15 @@ void game(){
 				cleardevice();
 				square.reset(100, 600, 200, 500);
 				cleardevice();
+				powerup.respawn();
+				win = false;
 			}
 
-			if (powerupcollision)
+			if (powerupcollision(powerup))
 			{
 				powerup.collect();
+				cleardevice();
+				win = true;
 			}
 
 
