@@ -63,38 +63,20 @@ struct Square
 		
 }square(100, 560, 200, 460);
 
-/*bool circlecollision()
-{
-	for (int i = square.left; i < square.right; i++)
-	{
-		if (getpixel(i, square.top + 1) == 1)
-		{
-			return true;
-		}
 
-		else if (getpixel(i, square.bottom - 1) == 1)
-		{
-			return true;
-		}
-	}
-	
-	for (int i = square.bottom; i < square.top; i++)
+bool circlecollision(Circle circles[], int numcircles)
+{
+	int centerx, centery, radius, distance, radiussum;
+	centerx = (square.left + square.right) / 2;
+	centery = (square.top + square.bottom) / 2;
+	radius = 50;
+	for (int i = 0; i < numcircles; i++)
 	{
-		if (getpixel(square.left - 1, i) == 1)
+		distance = sqrt(((centerx - circles[i].x) *(centerx - circles[i].x)) + ((centery - circles[i].y) * (centery - circles[i].y)));
+		radiussum = radius + circles[i].radius;
+		if (distance < radiussum)
 		{
-			std:: cout << square.left-1 << "," << i << "   " << 1 << '\n';
 			return true;
-		}
-		
-	 if (getpixel(square.right + 1, i) == 1)
-		{
-		//	std::cout << square.left - 1 << "," << i << "  " << 2 << '\n';
-			std::cout << square.right + 1 << ", " << i << " \n";
-			putpixel(square.right + 1, i, 14);
-			if (getpixel(square.right + 1, i) == 1){
-				std::cout << getpixel(square.right + 1, i) << '\n';
-			return true;
-			}
 		}
 	}
 	return false;
@@ -102,37 +84,18 @@ struct Square
 
 
 
-bool powerupcollision(Square square)
+bool powerupcollision(Powerup powerup)
 {
-	for (int i = square.left; i < square.right; i++)
+	int centerx, centery, radius, distance, radiussum, poweruprad;
+	poweruprad = 10;
+	centerx = (square.left + square.right) / 2;
+	centery = (square.top + square.bottom) / 2;
+	radius = 50;
+	distance = sqrt(((centerx - powerup.x) * (centerx - powerup.x)) + ((centery - powerup.y) * (centery - powerup.y)));
+	radiussum = radius + poweruprad;
+	if (distance < radiussum)
 	{
-		if (getpixel(i, square.top + 1) == 14)
-		{
-			powerup.collect();
-			return true;
-		}
-
-		else if (getpixel(i, square.bottom - 1) == 14)
-		{
-			powerup.collect();
-			return true;
-		}
-	}
-
-	for (int i = square.top; i < square.bottom; i++)
-	{
-		if (getpixel(square.left - 1, i) == 14)
-		{
-
-			powerup.collect();
-			return true;
-		}
-
-		else if (getpixel(square.right + 1, i) == 14)
-		{
-			powerup.collect();
-			return true;
-		}
+		return true;
 	}
 	return false;
 }
@@ -166,4 +129,4 @@ bool endzonecollision(Square square)
 	}
 
 	return false;
-}*/
+}
