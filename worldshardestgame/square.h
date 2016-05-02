@@ -61,7 +61,7 @@ struct Square
 
 
 		
-}square(100, 600, 200, 500);
+}square(100, 560, 200, 460);
 
 /*bool circlecollision()
 {

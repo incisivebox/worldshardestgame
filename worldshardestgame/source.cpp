@@ -100,6 +100,8 @@ void tick(){
 void game(){
 	
 	gr_start(GrDriver, GrMode, ErrorCode);
+	//setcolor(1);
+//	bar(0, 0, getmaxx(), getmaxy());
 	setbkcolor(0);
 	square.spawn();
 	powerup.setup(500, 500, true);
