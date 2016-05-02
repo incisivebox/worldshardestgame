@@ -181,6 +181,7 @@ void PrintFuncts(){
 }
 
 void KEY_LISTENER(){
+	PrintFuncts();
 	while (true){
 		while (global.go){
 			while (true){
