@@ -130,7 +130,7 @@ void game(){
 				win = false;
 			}
 
-			if (powerupcollision(powerup))
+			if (powerupcollision(powerup) && win == false)
 			{
 				powerup.collect();
 				cleardevice();
