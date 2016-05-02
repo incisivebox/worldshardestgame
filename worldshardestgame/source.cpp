@@ -134,8 +134,19 @@ void game(){
 			{
 				powerup.collect();
 				cleardevice();
+				Sleep(5);
+				cleardevice();
 				
 				win = true;
+			}
+
+			if (win)
+			{
+				if (endzonecollision(square))
+				{
+					cout << "YOU WIN" << '\n';
+					closegraph();
+				}
 			}
 
 
