@@ -5,7 +5,7 @@ struct Circle{
 	bool dir;
 	int radius = 30;
 
-}circ[12];
+}circ[13];
 
 void lvl1circsetup(){
 	//Setup circles on opposing ends of screen (for level one only)
@@ -15,7 +15,7 @@ void lvl1circsetup(){
 	setcolor(1);
 	fillellipse(circ[0].x, circ[0].y, 30,30);
 
-	for (int i = 1; i < 12; i++){
+	for (int i = 1; i < 13; i++){
 		circ[i].x = circ[i - 1].x + 110;
 		if (i % 2 == 0){
 			circ[i].y = 100;
@@ -33,7 +33,7 @@ bool change;
 int prevy1 = 100, prevy2 = 900;
 
 void lvl1circupdate(){
-	for (int i = 0; i < 12; i++){
+	for (int i = 0; i < 13; i++){
 		
 		//Move circle
 		if (circ[i].dir == true){
@@ -59,7 +59,7 @@ void lvl1circupdate(){
 
 void lvl1circprint(){
 	if (change){
-		for (int i = 0; i < 12; i++){
+		for (int i = 0; i < 13; i++){
 			if (circ[i].dir){
 				if (circ[i].y == 100){
 					setcolor(0);
