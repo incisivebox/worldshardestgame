@@ -109,7 +109,6 @@ void game(){
 	powerup.spawn();
 	lvl1circsetup();
 	lvl1endzonesetup();
-	lvl1walls();
 	global.go = true;
 
 	while (true){
@@ -125,7 +124,6 @@ void game(){
 				cleardevice();
 				square.reset(100, 600, 200, 500);
 				cleardevice();
-
 			}
 
 			if (powerupcollision)
@@ -172,13 +170,7 @@ bool KEYBOARD(int VirtualKey){
 	return false;
 }
 
-bool squarecheck(){
-	//if
-	
 
-
-	return true;
-}
 
 void PrintFuncts(){
 
@@ -186,7 +178,6 @@ void PrintFuncts(){
 	lvl1circprint();
 	lvl1endzonesetup();
 	square.spawn();
-	lvl1walls();
 }
 
 void KEY_LISTENER(){
@@ -195,13 +186,13 @@ void KEY_LISTENER(){
 		while (global.go){
 			while (true){
 				global.hold = global.press = false;
-				if (KEYBOARD(VK_S) && square.top <= getmaxy() && getpixel(square.left + 50, square.top + 8) != 8 && getpixel(square.left, square.top + 8) != 8 && getpixel(square.right, square.top + 8) != 8){
+				if (KEYBOARD(VK_S) && square.top <= getmaxy()){
 					square.erase();
 					square.top += speed - 5;
 					square.bottom += speed - 5;
 					square.spawn();
 					PrintFuncts();
-					while (global.hold && (GetAsyncKeyState(VK_S) & 0x8000) && square.top <= getmaxy() && getpixel(square.left + 50, square.top + 8) != 8 && getpixel(square.left, square.top + 8) != 8 && getpixel(square.right, square.top + 8) != 8){
+					while (global.hold && (GetAsyncKeyState(VK_S) & 0x8000) && square.top <= getmaxy()){
 						square.erase();
 						square.top += speed;
 						square.bottom += speed;
@@ -215,7 +206,7 @@ void KEY_LISTENER(){
 						PrintFuncts();
 						Sleep(10);
 						PrintFuncts();
-						if ((GetAsyncKeyState(VK_D) & 0x8000) && square.top <= getmaxy() && square.right <= getmaxx() && getpixel(square.right + 8, square.bottom + 50) != 8 && getpixel(square.right + 8, square.bottom) != 8 && getpixel(square.right + 8, square.top) != 8){
+						if ((GetAsyncKeyState(VK_D) & 0x8000) && square.top <= getmaxy() && square.right <= getmaxx()){
 							square.erase();
 							square.left += speed;
 							square.right += speed;
@@ -223,7 +214,7 @@ void KEY_LISTENER(){
 							PrintFuncts();
 							Sleep(.5);
 						}
-						if ((GetAsyncKeyState(VK_A) & 0x8000) && square.top <= getmaxy() && square.left >= 0 && getpixel(square.left - 8, square.bottom + 50) != 8 && getpixel(square.left - 8, square.bottom ) != 8 && getpixel(square.left - 8, square.top) != 8){
+						if ((GetAsyncKeyState(VK_A) & 0x8000) && square.top <= getmaxy() && square.left >= 0){
 							square.erase();
 							square.left -= speed;
 							square.right -= speed;
@@ -233,13 +224,13 @@ void KEY_LISTENER(){
 						}
 					}
 				}
-				if (KEYBOARD(VK_W) && square.bottom >= 0 && getpixel(square.left, square.bottom - 8) != 8 && getpixel(square.left + 50, square.bottom - 8) != 8 && getpixel(square.right, square.bottom - 8) != 8){
+				if (KEYBOARD(VK_W) && square.bottom >= 0){
 					square.erase();
 					square.top -= speed - 5;
 					square.bottom -= speed - 5;
 					square.spawn();
 					PrintFuncts();
-					while (global.hold && (GetAsyncKeyState(VK_W) & 0x8000) && square.bottom >= 0 && getpixel(square.left, square.bottom - 8) != 8 && getpixel(square.left + 50, square.bottom - 8) != 8 && getpixel(square.right, square.bottom - 8) != 8){
+					while (global.hold && (GetAsyncKeyState(VK_W) & 0x8000) && square.bottom >= 0){
 						square.erase();
 						square.top -= speed;
 						square.bottom -= speed;
@@ -253,7 +244,7 @@ void KEY_LISTENER(){
 						PrintFuncts();
 						Sleep(10);
 						PrintFuncts();
-						if ((GetAsyncKeyState(VK_D) & 0x8000) && square.bottom >= 0 && square.right <= getmaxx() && getpixel(square.right + 8, square.bottom + 50) != 8 && getpixel(square.right + 8, square.bottom) != 8 && getpixel(square.right + 8, square.top) != 8){
+						if ((GetAsyncKeyState(VK_D) & 0x8000) && square.bottom >= 0 && square.right <= getmaxx()){
 							square.erase();
 							square.left += speed;
 							square.right += speed;
@@ -261,7 +252,7 @@ void KEY_LISTENER(){
 							PrintFuncts();
 							Sleep(.5);
 						}
-						if ((GetAsyncKeyState(VK_A) & 0x8000) && square.bottom >= 0 && square.left >= 0 && getpixel(square.left - 8, square.bottom + 50) != 8 && getpixel(square.left - 8, square.bottom) != 8 && getpixel(square.left - 8, square.top) != 8){
+						if ((GetAsyncKeyState(VK_A) & 0x8000) && square.bottom >= 0 && square.left >= 0){
 							square.erase();
 							square.left -= speed;
 							square.right -= speed;
@@ -271,13 +262,13 @@ void KEY_LISTENER(){
 						}
 					}
 				}
-				if (KEYBOARD(VK_A) && square.left >= 0 && getpixel(square.left - 8, square.bottom + 50) != 8 && getpixel(square.left - 8, square.bottom) != 8 && getpixel(square.left - 8, square.top) != 8){
+				if (KEYBOARD(VK_A) && square.left >= 0){
 					square.erase();
 					square.left -= speed - 5;
 					square.right -= speed - 5;
 					square.spawn();
 					PrintFuncts();
-					while (global.hold && (GetAsyncKeyState(VK_A) & 0x8000) && square.left >= 0 && getpixel(square.left - 8, square.bottom + 50) != 8 && getpixel(square.left - 8, square.bottom) != 8 && getpixel(square.left - 8, square.top) != 8){
+					while (global.hold && (GetAsyncKeyState(VK_A) & 0x8000) && square.left >= 0){
 						square.erase();
 						square.left -= speed;
 						square.right -= speed;
@@ -291,7 +282,7 @@ void KEY_LISTENER(){
 						PrintFuncts();
 						Sleep(10);
 						PrintFuncts();
-						if ((GetAsyncKeyState(VK_W) & 0x8000) && square.left >= 0 && square.bottom >= 0 && getpixel(square.left, square.bottom - 8) != 8 && getpixel(square.left + 50, square.bottom - 8) != 8 && getpixel(square.right, square.bottom - 8) != 8){
+						if ((GetAsyncKeyState(VK_W) & 0x8000) && square.left >= 0 && square.bottom >= 0){
 							square.erase();
 							square.top -= speed;
 							square.bottom -= speed;
@@ -299,7 +290,7 @@ void KEY_LISTENER(){
 							PrintFuncts();
 							Sleep(.5);
 						}
-						if ((GetAsyncKeyState(VK_S) & 0x8000) && square.left >= 0 && square.top <= getmaxy() && getpixel(square.left + 50, square.top + 8) != 8 && getpixel(square.left, square.top + 8) != 8 && getpixel(square.right, square.top + 8) != 8){
+						if ((GetAsyncKeyState(VK_S) & 0x8000) && square.left >= 0 && square.top <= getmaxy()){
 							square.erase();
 							square.top += speed;
 							square.bottom += speed;
@@ -309,13 +300,13 @@ void KEY_LISTENER(){
 						}
 					}
 				}
-				if (KEYBOARD(VK_D) && square.right <= getmaxx() && getpixel(square.right + 8, square.bottom + 50) != 8 && getpixel(square.right + 8, square.bottom) != 8 && getpixel(square.right + 8, square.top) != 8){
+				if (KEYBOARD(VK_D) && square.right <= getmaxx()){
 					square.erase();
 					square.left += speed - 5;
 					square.right += speed - 5;
 					square.spawn();
 					PrintFuncts();
-					while (global.hold && (GetAsyncKeyState(VK_D) & 0x8000) && square.right <= getmaxx() && getpixel(square.right + 8, square.bottom + 50) != 8 && getpixel(square.right + 8, square.bottom) != 8 && getpixel(square.right + 8, square.top) != 8){
+					while (global.hold && (GetAsyncKeyState(VK_D) & 0x8000) && square.right <= getmaxx()){
 						square.erase();
 						square.left += speed;
 						square.right += speed;
@@ -331,7 +322,7 @@ void KEY_LISTENER(){
 						PrintFuncts();
 						Sleep(10);
 						PrintFuncts();
-						if ((GetAsyncKeyState(VK_W) & 0x8000) && square.right <= getmaxx() && square.bottom >= 0 && getpixel(square.left, square.bottom - 8) != 8 && getpixel(square.left + 50, square.bottom - 8) != 8 && getpixel(square.right, square.bottom - 8) != 8){
+						if ((GetAsyncKeyState(VK_W) & 0x8000) && square.right <= getmaxx() && square.bottom >= 0){
 							square.erase();
 							square.top -= speed;
 							square.bottom -= speed;
@@ -339,7 +330,7 @@ void KEY_LISTENER(){
 							PrintFuncts();
 							Sleep(.5);
 						}
-						if ((GetAsyncKeyState(VK_S) & 0x8000) && square.top <= getmaxy() && square.right <= getmaxx() && getpixel(square.left + 50, square.top + 8) != 8 && getpixel(square.left, square.top + 8) != 8 && getpixel(square.right, square.top + 8) != 8){
+							if ((GetAsyncKeyState(VK_S) & 0x8000) && square.top <= getmaxy() && square.right <= getmaxx()){
 							square.erase();
 							square.top += speed;
 							square.bottom += speed;
