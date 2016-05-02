@@ -13,7 +13,7 @@ struct Powerup
 	void spawn()
 	{
 
-		if (draw)
+		if (draw == true)
 		{
 			setcolor(14);
 			fillellipse(x, y, 10, 10);
@@ -23,5 +23,10 @@ struct Powerup
 	void collect()
 	{
 		draw = false;
+	}
+
+	void respawn()
+	{
+		draw = true;
 	}
 }powerup;

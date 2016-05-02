@@ -36,6 +36,7 @@ void gr_start(int &GrDriver, int &GrMode, int &ErrorCode)
 	}
 }
 
+bool win = false;
 int speed = 8;
 void PrintFuncts();
 void KEY_LISTENER();
@@ -123,14 +124,32 @@ void game(){
 			{
 				cout << "Collide!" << '\n';
 				cleardevice();
-				square.reset(100, 600, 200, 500);
+				Sleep(5);
 				cleardevice();
+
+				square.reset(100, 600, 200, 500);
+				powerup.respawn();
+				win = false;
 
 			}
 
-			if (powerupcollision)
+			if (powerupcollision(powerup))
 			{
 				powerup.collect();
+				cleardevice();
+				Sleep(5);
+				cleardevice();
+				
+				win = true;
+			}
+
+			if (win)
+			{
+				if (endzonecollision(square))
+				{
+					cout << "YOU WIN" << '\n';
+					closegraph();
+				}
 			}
 
 
