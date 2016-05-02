@@ -123,8 +123,9 @@ void game(){
 			{
 				cout << "Collide!" << '\n';
 				cleardevice();
-				square.reset(100, 600, 200, 500);
+				Sleep(5);
 				cleardevice();
+				square.reset(100, 600, 200, 500);
 				powerup.respawn();
 				win = false;
 			}
@@ -133,6 +134,7 @@ void game(){
 			{
 				powerup.collect();
 				cleardevice();
+				
 				win = true;
 			}
 
