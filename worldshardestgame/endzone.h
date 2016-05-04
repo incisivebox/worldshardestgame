@@ -18,3 +18,12 @@ void lvl1walls(){
 	bar(1919 - (py*1.5), 1019, 1919, py * 5);
 	bar(1919, py * 3, 1879, py * 5);
 }
+
+void lvl2endzonesetup(){
+
+}
+
+void lvl2walls(){
+
+
+}

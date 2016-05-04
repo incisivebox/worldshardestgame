@@ -102,3 +102,11 @@ void lvl1circprint(){
 
 
 }
+
+void lvl2circsetup(){
+
+}
+
+void lvl2circupdate(){
+
+}

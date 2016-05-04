@@ -49,6 +49,7 @@ struct Pass {
 	int VirtualKey;
 	POINT p;
 	bool go = false;
+	int lvl = 1;
 }global;
 
 /*void updatecirc(){
@@ -127,7 +128,7 @@ void game(){
 				Sleep(5);
 				cleardevice();
 
-				square.reset(100, 600, 200, 500);
+				square.reset(100, 560, 200, 460);
 				powerup.respawn();
 				win = false;
 
@@ -148,6 +149,9 @@ void game(){
 				if (endzonecollision(square))
 				{
 					cout << "YOU WIN" << '\n';
+					global.lvl = 2;
+					goto lvl2;
+					
 					closegraph();
 				}
 			}
@@ -158,6 +162,63 @@ void game(){
 
 		Sleep(45);
 	}
+
+lvl2:
+	global.go = false;
+	cleardevice();
+	powerup.setup(800, 500, true);
+	powerup.spawn();
+	lvl2circsetup();
+	lvl2endzonesetup();
+	lvl2walls();
+
+
+	global.go = true;
+	while (true){
+		lvl2circupdate();
+	//	square.reset(100, 560, 200, 460);
+
+		bool collide = circlecollision(circ, 12);
+		if (collide)
+		{
+			cout << "Collide!" << '\n';
+			cleardevice();
+			Sleep(5);
+			cleardevice();
+
+			square.reset(100, 560, 200, 460);
+			powerup.respawn();
+			win = false;
+
+		}
+
+		if (powerupcollision(powerup) && win == false)
+		{
+			powerup.collect();
+			cleardevice();
+			Sleep(5);
+			cleardevice();
+
+			win = true;
+		}
+
+		if (win)
+		{
+			if (endzonecollision(square))
+			{
+				cout << "YOU WIN" << '\n';
+
+				closegraph();
+			}
+		}
+
+	}
+
+
+
+
+
+
 
 	closegraph();
 }
@@ -200,12 +261,19 @@ bool squarecheck(){
 }
 
 void PrintFuncts(){
+	if (global.lvl == 1){
+		powerup.spawn();
+		lvl1circprint();
+		lvl1endzonesetup();
+		square.spawn();
+		lvl1walls();
+	}
+	else if (global.lvl == 2){
 
-	powerup.spawn();
-	lvl1circprint();
-	lvl1endzonesetup();
-	square.spawn();
-	lvl1walls();
+
+	}
+
+
 }
 
 void KEY_LISTENER(){
