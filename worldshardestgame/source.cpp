@@ -171,7 +171,7 @@ lvl2:
 	lvl2endzonesetup();
 	lvl2walls();
 	square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
-	square.spawn;
+	square.spawn();
 
 	global.go = true;
 	while (true){
