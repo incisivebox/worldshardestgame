@@ -166,8 +166,7 @@ void game(){
 lvl2:
 	global.go = false;
 	cleardevice();
-	powerup.setup(800, 500, true);
-	powerup.spawn();
+
 	lvl2circsetup();
 	lvl2endzonesetup();
 	lvl2walls();
@@ -193,6 +192,8 @@ lvl2:
 
 		}
 
+		/*
+
 		if (powerupcollision(powerup) && win == false)
 		{
 			powerup.collect();
@@ -202,16 +203,14 @@ lvl2:
 
 			win = true;
 		}
-
-		if (win)
-		{
+		*/
+		
 			if (endzonecollision(square))
 			{
 				cout << "YOU WIN" << '\n';
 
 				closegraph();
 			}
-		}
 
 	}
 
