@@ -202,15 +202,13 @@ lvl2:
 			win = true;
 		}
 
-		if (win)
-		{
+		
 			if (endzonecollision(square))
 			{
 				cout << "YOU WIN" << '\n';
 
 				closegraph();
 			}
-		}
 
 	}
 
