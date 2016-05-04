@@ -166,8 +166,7 @@ void game(){
 lvl2:
 	global.go = false;
 	cleardevice();
-	powerup.setup(800, 500, true);
-	powerup.spawn();
+
 	lvl2circsetup();
 	lvl2endzonesetup();
 	lvl2walls();
