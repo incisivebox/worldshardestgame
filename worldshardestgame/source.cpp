@@ -113,6 +113,8 @@ void game(){
 	lvl1endzonesetup();
 	lvl1walls();
 	global.go = true;
+	global.lvl = 2;
+	goto lvl2;
 
 	while (true){
 		lvl1circupdate();
@@ -156,8 +158,6 @@ void game(){
 				}
 			}
 
-
-
 		
 
 		Sleep(45);
@@ -171,7 +171,8 @@ lvl2:
 	lvl2circsetup();
 	lvl2endzonesetup();
 	lvl2walls();
-
+	square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
+	square.spawn;
 
 	global.go = true;
 	while (true){
@@ -269,7 +270,11 @@ void PrintFuncts(){
 		lvl1walls();
 	}
 	else if (global.lvl == 2){
-
+		powerup.spawn();
+		lvl2circprint();
+		lvl2endzonesetup();
+		square.spawn();
+		lvl2walls();
 
 	}
 
@@ -438,6 +443,7 @@ void KEY_LISTENER(){
 				}
 				if (change){
 					PrintFuncts();
+					
 				}
 			}
 		}

@@ -110,3 +110,7 @@ void lvl2circsetup(){
 void lvl2circupdate(){
 
 }
+
+void lvl2circprint(){
+
+}
