@@ -172,13 +172,12 @@ lvl2:
 	lvl2walls();
 	square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
 	square.spawn();
-
 	global.go = true;
 	while (true){
 		lvl2circupdate();
 	//	square.reset(100, 560, 200, 460);
 
-		bool collide = circlecollision(circ, 12);
+		bool collide = circlecollision(circ, 16);
 		if (collide)
 		{
 			cout << "Collide!" << '\n';
@@ -186,8 +185,8 @@ lvl2:
 			Sleep(5);
 			cleardevice();
 
-			square.reset(100, 560, 200, 460);
-			powerup.respawn();
+			square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
+		//	powerup.respawn();
 			win = false;
 
 		}
@@ -212,6 +211,7 @@ lvl2:
 				closegraph();
 			}
 
+			Sleep(45);
 	}
 
 
