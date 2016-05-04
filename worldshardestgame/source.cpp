@@ -192,6 +192,8 @@ lvl2:
 
 		}
 
+		/*
+
 		if (powerupcollision(powerup) && win == false)
 		{
 			powerup.collect();
@@ -201,7 +203,7 @@ lvl2:
 
 			win = true;
 		}
-
+		*/
 		
 			if (endzonecollision(square))
 			{
