@@ -113,8 +113,8 @@ void game(){
 	lvl1endzonesetup();
 	lvl1walls();
 	global.go = true;
-	global.lvl = 2;
-	goto lvl2;
+	global.lvl = 1;
+	//goto lvl2;
 
 	while (true){
 		lvl1circupdate();
@@ -152,7 +152,7 @@ void game(){
 				{
 					cout << "YOU WIN" << '\n';
 					global.lvl = 2;
-					goto lvl2;
+					//goto lvl2;
 					
 					closegraph();
 				}
@@ -178,6 +178,7 @@ lvl2:
 		lvl2circupdate();
 	//	square.reset(100, 560, 200, 460);
 
+		
 		bool collide = circlecollision(circ, 12);
 		if (collide)
 		{
@@ -186,12 +187,13 @@ lvl2:
 			Sleep(5);
 			cleardevice();
 
-			square.reset(100, 560, 200, 460);
-			powerup.respawn();
+			square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
+			//powerup.respawn();
 			win = false;
 
 		}
 
+		
 		/*
 
 		if (powerupcollision(powerup) && win == false)
@@ -208,9 +210,63 @@ lvl2:
 			if (endzonecollision(square))
 			{
 				cout << "YOU WIN" << '\n';
+				goto lvl3;
 
 				closegraph();
 			}
+
+	}
+
+lvl3:
+	global.go = false;
+	cleardevice();
+
+	lvl3circsetup();
+	//lvl3endzonesetup();
+	//lvl3walls();
+	square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
+	square.spawn();
+
+	global.go = true;
+	while (true){
+		lvl2circupdate();
+		//	square.reset(100, 560, 200, 460);
+
+
+		bool collide = circlecollision(circ, 12);
+		if (collide)
+		{
+			cout << "Collide!" << '\n';
+			cleardevice();
+			Sleep(5);
+			cleardevice();
+
+			square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
+			//powerup.respawn();
+			win = false;
+
+		}
+
+
+		/*
+
+		if (powerupcollision(powerup) && win == false)
+		{
+		powerup.collect();
+		cleardevice();
+		Sleep(5);
+		cleardevice();
+
+		win = true;
+		}
+		*/
+
+		if (endzonecollision(square))
+		{
+			cout << "YOU WIN" << '\n';
+
+			closegraph();
+		}
 
 	}
 
@@ -219,9 +275,11 @@ lvl2:
 
 
 
-
 	closegraph();
 }
+
+
+
 
 void main()
 {
@@ -269,7 +327,7 @@ void PrintFuncts(){
 		lvl1walls();
 	}
 	else if (global.lvl == 2){
-		powerup.spawn();
+		//powerup.spawn();
 		lvl2circprint();
 		lvl2endzonesetup();
 		square.spawn();
