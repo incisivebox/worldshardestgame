@@ -262,3 +262,15 @@ void lvl2circprint(){
 	}
 
 }
+
+void lvl3circsetup(){
+
+}
+
+void lvl3circupdate(){
+
+}
+
+void lvl3circprint(){
+
+}

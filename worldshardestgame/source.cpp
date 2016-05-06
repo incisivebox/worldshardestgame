@@ -113,8 +113,8 @@ void game(){
 	lvl1endzonesetup();
 	lvl1walls();
 	global.go = true;
-	global.lvl = 2;
-	goto lvl2;
+	global.lvl = 1;
+	//goto lvl2;
 
 	while (true){
 		lvl1circupdate();
@@ -122,7 +122,7 @@ void game(){
 	
 		
 		
-			bool collide = circlecollision(circ, 12);
+			bool collide = circlecollision(circ, 13);
 			if (collide)
 			{
 				cout << "Collide!" << '\n';
@@ -139,10 +139,12 @@ void game(){
 			if (powerupcollision(powerup) && win == false)
 			{
 				powerup.collect();
+				global.go = false;
 				cleardevice();
 				Sleep(5);
 				cleardevice();
-				
+				global.go = true;
+
 				win = true;
 			}
 
@@ -179,7 +181,9 @@ lvl2:
 		lvl2circupdate();
 	//	square.reset(100, 560, 200, 460);
 
+
 		bool collide = circlecollision(circ, 16);
+
 		if (collide)
 		{
 			cout << "Collide!" << '\n';
@@ -188,11 +192,12 @@ lvl2:
 			cleardevice();
 
 			square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
-		//	powerup.respawn();
+
 			win = false;
 
 		}
 
+		
 		/*
 
 		if (powerupcollision(powerup) && win == false)
@@ -209,6 +214,7 @@ lvl2:
 			if (endzonecollision(square))
 			{
 				cout << "YOU WIN" << '\n';
+				goto lvl3;
 
 				closegraph();
 			}
@@ -216,6 +222,58 @@ lvl2:
 			Sleep(45);
 	}
 
+lvl3:
+	global.go = false;
+	cleardevice();
+
+	lvl3circsetup();
+	//lvl3endzonesetup();
+	//lvl3walls();
+	square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
+	square.spawn();
+
+	global.go = true;
+	while (true){
+		lvl2circupdate();
+		//	square.reset(100, 560, 200, 460);
+
+
+		bool collide = circlecollision(circ, 12);
+		if (collide)
+		{
+			cout << "Collide!" << '\n';
+			cleardevice();
+			Sleep(5);
+			cleardevice();
+
+			square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
+			//powerup.respawn();
+			win = false;
+
+		}
+
+
+		/*
+
+		if (powerupcollision(powerup) && win == false)
+		{
+		powerup.collect();
+		cleardevice();
+		Sleep(5);
+		cleardevice();
+
+		win = true;
+		}
+		*/
+
+		if (endzonecollision(square))
+		{
+			cout << "YOU WIN" << '\n';
+
+			closegraph();
+		}
+
+	}
 
 
 
@@ -224,6 +282,9 @@ lvl2:
 
 	closegraph();
 }
+
+
+
 
 void main()
 {
@@ -271,7 +332,7 @@ void PrintFuncts(){
 		lvl1walls();
 	}
 	else if (global.lvl == 2){
-		powerup.spawn();
+		//powerup.spawn();
 		lvl2circprint();
 		lvl2endzonesetup();
 		square.spawn();
@@ -286,7 +347,7 @@ void KEY_LISTENER(){
 	PrintFuncts();
 	while (true){
 		while (global.go){
-			while (true){
+			while (global.go){
 				global.hold = global.press = false;
 				if (KEYBOARD(VK_S) && square.top <= getmaxy() && getpixel(square.left + 50, square.top + 10) != 8 && getpixel(square.left, square.top + 10) != 8 && getpixel(square.right, square.top + 10) != 8 && getpixel(square.left + 50, square.top + 1) != 8 && getpixel(square.left, square.top + 1) != 8 && getpixel(square.right, square.top + 1) != 8){
 					square.erase();
@@ -446,6 +507,7 @@ void KEY_LISTENER(){
 					PrintFuncts();
 					
 				}
+				
 			}
 		}
 	}
