@@ -166,11 +166,13 @@ void game(){
 lvl2:
 	global.go = false;
 	cleardevice();
-
+	setcolor(0);
+	bar(0, 0, 1919, 1019);
+	cleardevice();
 	lvl2circsetup();
 	lvl2endzonesetup();
 	lvl2walls();
-	square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
+	square.reset(910, 1017, 1010, 917);
 	square.spawn();
 	global.go = true;
 	while (true){
@@ -286,13 +288,13 @@ void KEY_LISTENER(){
 		while (global.go){
 			while (true){
 				global.hold = global.press = false;
-				if (KEYBOARD(VK_S) && square.top <= getmaxy() && getpixel(square.left + 50, square.top + 8) != 8 && getpixel(square.left, square.top + 8) != 8 && getpixel(square.right, square.top + 8) != 8){
+				if (KEYBOARD(VK_S) && square.top <= getmaxy() && getpixel(square.left + 50, square.top + 10) != 8 && getpixel(square.left, square.top + 10) != 8 && getpixel(square.right, square.top + 10) != 8 && getpixel(square.left + 50, square.top + 1) != 8 && getpixel(square.left, square.top + 1) != 8 && getpixel(square.right, square.top + 1) != 8){
 					square.erase();
 					square.top += speed - 5;
 					square.bottom += speed - 5;
 					square.spawn();
 					PrintFuncts();
-					while (global.hold && (GetAsyncKeyState(VK_S) & 0x8000) && square.top <= getmaxy() && getpixel(square.left + 50, square.top + 8) != 8 && getpixel(square.left, square.top + 8) != 8 && getpixel(square.right, square.top + 8) != 8){
+					while (global.hold && (GetAsyncKeyState(VK_S) & 0x8000) && square.top <= getmaxy() && getpixel(square.left + 50, square.top + 10) != 8 && getpixel(square.left, square.top + 10) != 8 && getpixel(square.right, square.top + 10) != 8 && getpixel(square.left + 50, square.top + 1) != 8 && getpixel(square.left, square.top + 1) != 8 && getpixel(square.right, square.top + 1) != 8){
 						square.erase();
 						square.top += speed;
 						square.bottom += speed;
@@ -306,7 +308,7 @@ void KEY_LISTENER(){
 						PrintFuncts();
 						Sleep(10);
 						PrintFuncts();
-						if ((GetAsyncKeyState(VK_D) & 0x8000) && square.top <= getmaxy() && square.right <= getmaxx() && getpixel(square.right + 8, square.bottom + 50) != 8 && getpixel(square.right + 8, square.bottom) != 8 && getpixel(square.right + 8, square.top) != 8){
+						if ((GetAsyncKeyState(VK_D) & 0x8000) && square.top <= getmaxy() && square.right <= getmaxx() && getpixel(square.right + 10, square.bottom + 50) != 8 && getpixel(square.right + 10, square.bottom) != 8 && getpixel(square.right + 10, square.top) != 8 && getpixel(square.right + 1, square.bottom + 50) != 8 && getpixel(square.right + 1, square.bottom) != 8 && getpixel(square.right + 1, square.top) != 8){
 							square.erase();
 							square.left += speed;
 							square.right += speed;
@@ -314,7 +316,7 @@ void KEY_LISTENER(){
 							PrintFuncts();
 							Sleep(.5);
 						}
-						if ((GetAsyncKeyState(VK_A) & 0x8000) && square.top <= getmaxy() && square.left >= 0 && getpixel(square.left - 8, square.bottom + 50) != 8 && getpixel(square.left - 8, square.bottom ) != 8 && getpixel(square.left - 8, square.top) != 8){
+						if ((GetAsyncKeyState(VK_A) & 0x8000) && square.top <= getmaxy() && square.left >= 0 && getpixel(square.left - 10, square.bottom + 50) != 8 && getpixel(square.left - 10, square.bottom) != 8 && getpixel(square.left - 10, square.top) != 8 && square.left >= 0 && getpixel(square.left - 1, square.bottom + 50) != 8 && getpixel(square.left - 1, square.bottom) != 8 && getpixel(square.left - 1, square.top) != 8){
 							square.erase();
 							square.left -= speed;
 							square.right -= speed;
@@ -324,13 +326,13 @@ void KEY_LISTENER(){
 						}
 					}
 				}
-				if (KEYBOARD(VK_W) && square.bottom >= 0 && getpixel(square.left, square.bottom - 8) != 8 && getpixel(square.left + 50, square.bottom - 8) != 8 && getpixel(square.right, square.bottom - 8) != 8){
+				if (KEYBOARD(VK_W) && square.bottom >= 0 && getpixel(square.left, square.bottom - 10) != 8 && getpixel(square.left + 50, square.bottom - 10) != 8 && getpixel(square.right, square.bottom - 10) != 8){
 					square.erase();
 					square.top -= speed - 5;
 					square.bottom -= speed - 5;
 					square.spawn();
 					PrintFuncts();
-					while (global.hold && (GetAsyncKeyState(VK_W) & 0x8000) && square.bottom >= 0 && getpixel(square.left, square.bottom - 8) != 8 && getpixel(square.left + 50, square.bottom - 8) != 8 && getpixel(square.right, square.bottom - 8) != 8){
+					while (global.hold && (GetAsyncKeyState(VK_W) & 0x8000) && square.bottom >= 0 && getpixel(square.left, square.bottom - 10) != 8 && getpixel(square.left + 50, square.bottom - 10) != 8 && getpixel(square.right, square.bottom - 10) != 8){
 						square.erase();
 						square.top -= speed;
 						square.bottom -= speed;
@@ -344,7 +346,7 @@ void KEY_LISTENER(){
 						PrintFuncts();
 						Sleep(10);
 						PrintFuncts();
-						if ((GetAsyncKeyState(VK_D) & 0x8000) && square.bottom >= 0 && square.right <= getmaxx() && getpixel(square.right + 8, square.bottom + 50) != 8 && getpixel(square.right + 8, square.bottom) != 8 && getpixel(square.right + 8, square.top) != 8){
+						if ((GetAsyncKeyState(VK_D) & 0x8000) && square.bottom >= 0 && square.right <= getmaxx() && getpixel(square.right + 10, square.bottom + 50) != 8 && getpixel(square.right + 10, square.bottom) != 8 && getpixel(square.right + 10, square.top) != 8 && getpixel(square.right + 1, square.bottom + 50) != 8 && getpixel(square.right + 1, square.bottom) != 8 && getpixel(square.right + 1, square.top) != 8){
 							square.erase();
 							square.left += speed;
 							square.right += speed;
@@ -352,7 +354,7 @@ void KEY_LISTENER(){
 							PrintFuncts();
 							Sleep(.5);
 						}
-						if ((GetAsyncKeyState(VK_A) & 0x8000) && square.bottom >= 0 && square.left >= 0 && getpixel(square.left - 8, square.bottom + 50) != 8 && getpixel(square.left - 8, square.bottom) != 8 && getpixel(square.left - 8, square.top) != 8){
+						if ((GetAsyncKeyState(VK_A) & 0x8000) && square.bottom >= 0 && square.left >= 0 && getpixel(square.left - 10, square.bottom + 50) != 8 && getpixel(square.left - 10, square.bottom) != 8 && getpixel(square.left - 10, square.top) != 8){
 							square.erase();
 							square.left -= speed;
 							square.right -= speed;
@@ -362,13 +364,13 @@ void KEY_LISTENER(){
 						}
 					}
 				}
-				if (KEYBOARD(VK_A) && square.left >= 0 && getpixel(square.left - 8, square.bottom + 50) != 8 && getpixel(square.left - 8, square.bottom) != 8 && getpixel(square.left - 8, square.top) != 8){
+				if (KEYBOARD(VK_A) && square.left >= 0 && getpixel(square.left - 10, square.bottom + 50) != 8 && getpixel(square.left - 10, square.bottom) != 8 && getpixel(square.left - 10, square.top) != 8){
 					square.erase();
 					square.left -= speed - 5;
 					square.right -= speed - 5;
 					square.spawn();
 					PrintFuncts();
-					while (global.hold && (GetAsyncKeyState(VK_A) & 0x8000) && square.left >= 0 && getpixel(square.left - 8, square.bottom + 50) != 8 && getpixel(square.left - 8, square.bottom) != 8 && getpixel(square.left - 8, square.top) != 8){
+					while (global.hold && (GetAsyncKeyState(VK_A) & 0x8000) && square.left >= 0 && getpixel(square.left - 10, square.bottom + 50) != 8 && getpixel(square.left - 10, square.bottom) != 8 && getpixel(square.left - 10, square.top) != 8){
 						square.erase();
 						square.left -= speed;
 						square.right -= speed;
@@ -382,7 +384,7 @@ void KEY_LISTENER(){
 						PrintFuncts();
 						Sleep(10);
 						PrintFuncts();
-						if ((GetAsyncKeyState(VK_W) & 0x8000) && square.left >= 0 && square.bottom >= 0 && getpixel(square.left, square.bottom - 8) != 8 && getpixel(square.left + 50, square.bottom - 8) != 8 && getpixel(square.right, square.bottom - 8) != 8){
+						if ((GetAsyncKeyState(VK_W) & 0x8000) && square.left >= 0 && square.bottom >= 0 && getpixel(square.left, square.bottom - 10) != 8 && getpixel(square.left + 50, square.bottom - 10) != 8 && getpixel(square.right, square.bottom - 10) != 8){
 							square.erase();
 							square.top -= speed;
 							square.bottom -= speed;
@@ -390,7 +392,7 @@ void KEY_LISTENER(){
 							PrintFuncts();
 							Sleep(.5);
 						}
-						if ((GetAsyncKeyState(VK_S) & 0x8000) && square.left >= 0 && square.top <= getmaxy() && getpixel(square.left + 50, square.top + 8) != 8 && getpixel(square.left, square.top + 8) != 8 && getpixel(square.right, square.top + 8) != 8){
+						if ((GetAsyncKeyState(VK_S) & 0x8000) && square.left >= 0 && square.top <= getmaxy() && getpixel(square.left + 50, square.top + 10) != 8 && getpixel(square.left, square.top + 10) != 8 && getpixel(square.right, square.top + 10) != 8 && getpixel(square.left + 50, square.top + 1) != 8 && getpixel(square.left, square.top + 1) != 8 && getpixel(square.right, square.top + 1) != 8){
 							square.erase();
 							square.top += speed;
 							square.bottom += speed;
@@ -400,13 +402,13 @@ void KEY_LISTENER(){
 						}
 					}
 				}
-				if (KEYBOARD(VK_D) && square.right <= getmaxx() && getpixel(square.right + 8, square.bottom + 50) != 8 && getpixel(square.right + 8, square.bottom) != 8 && getpixel(square.right + 8, square.top) != 8){
+				if (KEYBOARD(VK_D) && square.right <= getmaxx() && getpixel(square.right + 10, square.bottom + 50) != 8 && getpixel(square.right + 10, square.bottom) != 8 && getpixel(square.right + 10, square.top) != 8 && getpixel(square.right + 1, square.bottom + 50) != 8 && getpixel(square.right + 1, square.bottom) != 8 && getpixel(square.right + 1, square.top) != 8){
 					square.erase();
 					square.left += speed - 5;
 					square.right += speed - 5;
 					square.spawn();
 					PrintFuncts();
-					while (global.hold && (GetAsyncKeyState(VK_D) & 0x8000) && square.right <= getmaxx() && getpixel(square.right + 8, square.bottom + 50) != 8 && getpixel(square.right + 8, square.bottom) != 8 && getpixel(square.right + 8, square.top) != 8){
+					while (global.hold && (GetAsyncKeyState(VK_D) & 0x8000) && square.right <= getmaxx() && getpixel(square.right + 10, square.bottom + 50) != 8 && getpixel(square.right + 10, square.bottom) != 8 && getpixel(square.right + 10, square.top) != 8 && getpixel(square.right + 1, square.bottom + 50) != 8 && getpixel(square.right + 1, square.bottom) != 8 && getpixel(square.right + 1, square.top) != 8){
 						square.erase();
 						square.left += speed;
 						square.right += speed;
@@ -422,7 +424,7 @@ void KEY_LISTENER(){
 						PrintFuncts();
 						Sleep(10);
 						PrintFuncts();
-						if ((GetAsyncKeyState(VK_W) & 0x8000) && square.right <= getmaxx() && square.bottom >= 0 && getpixel(square.left, square.bottom - 8) != 8 && getpixel(square.left + 50, square.bottom - 8) != 8 && getpixel(square.right, square.bottom - 8) != 8){
+						if ((GetAsyncKeyState(VK_W) & 0x8000) && square.right <= getmaxx() && square.bottom >= 0 && getpixel(square.left, square.bottom - 10) != 8 && getpixel(square.left + 50, square.bottom - 10) != 8 && getpixel(square.right, square.bottom - 10) != 8){
 							square.erase();
 							square.top -= speed;
 							square.bottom -= speed;
@@ -430,7 +432,7 @@ void KEY_LISTENER(){
 							PrintFuncts();
 							Sleep(.5);
 						}
-						if ((GetAsyncKeyState(VK_S) & 0x8000) && square.top <= getmaxy() && square.right <= getmaxx() && getpixel(square.left + 50, square.top + 8) != 8 && getpixel(square.left, square.top + 8) != 8 && getpixel(square.right, square.top + 8) != 8){
+						if ((GetAsyncKeyState(VK_S) & 0x8000) && square.top <= getmaxy() && square.right <= getmaxx() && getpixel(square.left + 50, square.top + 10) != 8 && getpixel(square.left, square.top + 10) != 8 && getpixel(square.right, square.top + 10) != 8 && getpixel(square.left + 50, square.top + 1) != 8 && getpixel(square.left, square.top + 1) != 8 && getpixel(square.right, square.top + 1) != 8){
 							square.erase();
 							square.top += speed;
 							square.bottom += speed;

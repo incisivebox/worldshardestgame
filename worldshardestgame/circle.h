@@ -129,10 +129,10 @@ void lvl2circsetup(){
 		fillellipse(circ[0].x, circ[0].y, 30, 30);
 	}
 	circ[15].x = 220;
-	circ[15].y = 400;
+	circ[15].y = 600;
 	circ[15].dir = true;
-	circ[16].x = 840;
-	circ[16].y = 300;
+	circ[16].x = 1700;
+	circ[16].y = 400;
 	circ[16].dir = false;
 
 }
@@ -161,7 +161,7 @@ void lvl2circupdate(){
 	}
 	if (circ[15].dir == true){
 		circ[15].x += 20;
-		if (circ[15].x == 840){
+		if (circ[15].x == 1700){
 			circ[15].dir = false;
 		}
 		circ[16].x -= 20;
@@ -175,7 +175,7 @@ void lvl2circupdate(){
 	}
 	change = true;
 }
-int prevx1 = 220, int prevx2 = 840;
+int prevx1 = 220, prevx2 = 1700;
 
 void lvl2circprint(){
 	if (change){
@@ -219,6 +219,46 @@ void lvl2circprint(){
 
 		change = false;
 	}
-
+	if (circ[15].dir){
+		if (circ[15].x == 220){
+			setcolor(0);
+			fillellipse(prevx1, circ[15].y,  30, 30);
+			fillellipse(prevx2, circ[16].y, 30, 30);
+			setcolor(1);
+			fillellipse(circ[15].x, circ[15].y, 30, 30);
+			fillellipse(circ[16].x, circ[16].y, 30, 30);
+			
+		}
+		else{
+			setcolor(0);
+			fillellipse(prevx2, circ[16].y, 30, 30);
+			fillellipse(prevx1, circ[15].y, 30, 30);
+			setcolor(1);
+			fillellipse(circ[15].x, circ[15].y, 30, 30);
+			fillellipse(circ[16].x, circ[16].y, 30, 30);
+		}
+		prevx1 = circ[15].x;
+		prevx2 = circ[16].x;
+	}
+	else{
+		if (circ[15].x == 1700){
+			setcolor(0);
+			fillellipse(prevx2, circ[15].y,  30, 30);
+			fillellipse(prevx1, circ[16].y, 30, 30);
+			setcolor(1);
+			fillellipse(circ[15].x, circ[15].y, 30, 30);
+			fillellipse(circ[16].x, circ[16].y, 30, 30);
+		}
+		else{
+			setcolor(0);
+			fillellipse(prevx1, circ[16].y, 30, 30);
+			fillellipse(prevx2, circ[15].y, 30, 30);
+			setcolor(1);
+			fillellipse(circ[15].x, circ[15].y, 30, 30);
+			fillellipse(circ[16].x, circ[16].y, 30, 30);
+		}
+		prevx1 = circ[16].x;
+		prevx2 = circ[15].x;
+	}
 
 }
