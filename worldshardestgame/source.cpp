@@ -122,7 +122,7 @@ void game(){
 	
 		
 		
-			bool collide = circlecollision(circ, 12);
+			bool collide = circlecollision(circ, 13);
 			if (collide)
 			{
 				cout << "Collide!" << '\n';
@@ -139,10 +139,12 @@ void game(){
 			if (powerupcollision(powerup) && win == false)
 			{
 				powerup.collect();
+				global.go = false;
 				cleardevice();
 				Sleep(5);
 				cleardevice();
-				
+				global.go = true;
+
 				win = true;
 			}
 
@@ -152,7 +154,7 @@ void game(){
 				{
 					cout << "YOU WIN" << '\n';
 					global.lvl = 2;
-					//goto lvl2;
+					goto lvl2;
 					
 					closegraph();
 				}
@@ -342,7 +344,7 @@ void KEY_LISTENER(){
 	PrintFuncts();
 	while (true){
 		while (global.go){
-			while (true){
+			while (global.go){
 				global.hold = global.press = false;
 				if (KEYBOARD(VK_S) && square.top <= getmaxy() && getpixel(square.left + 50, square.top + 8) != 8 && getpixel(square.left, square.top + 8) != 8 && getpixel(square.right, square.top + 8) != 8){
 					square.erase();
@@ -502,6 +504,7 @@ void KEY_LISTENER(){
 					PrintFuncts();
 					
 				}
+				
 			}
 		}
 	}
