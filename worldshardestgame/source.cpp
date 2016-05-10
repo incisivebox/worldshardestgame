@@ -36,7 +36,10 @@ void gr_start(int &GrDriver, int &GrMode, int &ErrorCode)
 	}
 }
 
+
+
 bool win = false;
+bool drawNewLevel = false;
 int speed = 8;
 void PrintFuncts();
 void KEY_LISTENER();
@@ -50,6 +53,7 @@ struct Pass {
 	POINT p;
 	bool go = false;
 	int lvl = 1;
+	bool erase = false;
 }global;
 
 /*void updatecirc(){
@@ -61,59 +65,23 @@ struct Pass {
 
 int key = 0;
 
-/*
-void tick(){		
-				square.erase();
-				lvl1endzonesetup();
-				key = getch();
-				square.translate(key);
-		for (int i = 0; i < 12; i++) //value is currently hardcoded
-
-	while (kbhit())
-	{
-		square.erase();
-		lvl1endzonesetup();
-		key = getch();
-		square.translate(key);
-	}
-		bool collide = circlecollision(square);
-		if (collide)
-		{
-			cout << "Collide!" << '\n';
-		}
-
-		collide = powerupcollision(square);
-		if (collide)
-		{
-			cout << "Collide! - powerup" << '\n';
-		}
-
-		collide = endzonecollision(square);
-		if (collide)
-		{
-			cout << "Collide!" << '\n';
-		}
-
-			
-
-		
-}
-*/
 
 void game(){
-	
+	srand((unsigned int)time(NULL));
 	gr_start(GrDriver, GrMode, ErrorCode);
 	//setcolor(1);
 //	bar(0, 0, getmaxx(), getmaxy());
 	setbkcolor(0);
+	global.go = true;
+	//global.lvl = 4;
+	//goto lvl4;
 	square.spawn();
 	powerup.setup(800, 500, true);
 	powerup.spawn();
 	lvl1circsetup();
 	lvl1endzonesetup();
 	lvl1walls();
-	global.go = true;
-	global.lvl = 1;
+	//global.lvl = 2;
 	//goto lvl2;
 
 	while (true){
@@ -125,10 +93,9 @@ void game(){
 			bool collide = circlecollision(circ, 13);
 			if (collide)
 			{
-				cout << "Collide!" << '\n';
-				cleardevice();
-				Sleep(5);
-				cleardevice();
+		
+			//	cout << "Collide!" << '\n';
+				global.erase = true;
 
 				square.reset(100, 560, 200, 460);
 				powerup.respawn();
@@ -140,9 +107,11 @@ void game(){
 			{
 				powerup.collect();
 				global.go = false;
-				cleardevice();
+				global.erase = true;
+				//lvl1walls();
 				Sleep(5);
-				cleardevice();
+				global.erase = true;
+				//lvl1walls();
 				global.go = true;
 
 				win = true;
@@ -152,7 +121,7 @@ void game(){
 			{
 				if (endzonecollision(square))
 				{
-					cout << "YOU WIN" << '\n';
+				//	cout << "YOU WIN" << '\n';
 					global.lvl = 2;
 					goto lvl2;
 					
@@ -166,16 +135,11 @@ void game(){
 	}
 
 lvl2:
+	global.erase = true;
 	global.go = false;
-	cleardevice();
-	setcolor(0);
-	bar(0, 0, 1919, 1019);
-	cleardevice();
-	lvl2circsetup();
-	lvl2endzonesetup();
-	lvl2walls();
-	square.reset(910, 1017, 1010, 917);
-	square.spawn();
+	drawNewLevel = true;
+	while (drawNewLevel){};
+	
 	global.go = true;
 	while (true){
 		lvl2circupdate();
@@ -186,10 +150,9 @@ lvl2:
 
 		if (collide)
 		{
-			cout << "Collide!" << '\n';
-			cleardevice();
-			Sleep(5);
-			cleardevice();
+			
+	//		cout << "Collide!" << '\n';
+			global.erase = true;
 
 			square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
 
@@ -203,9 +166,9 @@ lvl2:
 		if (powerupcollision(powerup) && win == false)
 		{
 			powerup.collect();
-			cleardevice();
+			global.erase = true;
 			Sleep(5);
-			cleardevice();
+			global.erase = true;
 
 			win = true;
 		}
@@ -213,7 +176,7 @@ lvl2:
 		
 			if (endzonecollision(square))
 			{
-				cout << "YOU WIN" << '\n';
+				//cout << "YOU WIN" << '\n';
 				goto lvl3;
 
 				closegraph();
@@ -223,10 +186,12 @@ lvl2:
 	}
 
 lvl3:
+	global.erase = true;
 	global.go = false;
-	cleardevice();
+	
 
 	lvl3circsetup();
+	//outtextxy(100, 100, "This is a possible level.");
 	//lvl3endzonesetup();
 	//lvl3walls();
 	square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
@@ -241,10 +206,8 @@ lvl3:
 		bool collide = circlecollision(circ, 12);
 		if (collide)
 		{
-			cout << "Collide!" << '\n';
-			cleardevice();
-			Sleep(5);
-			cleardevice();
+			//cout << "Collide!" << '\n';
+			global.erase = true;
 
 			square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
 			//powerup.respawn();
@@ -258,9 +221,9 @@ lvl3:
 		if (powerupcollision(powerup) && win == false)
 		{
 		powerup.collect();
-		cleardevice();
+		global.erase = true;
 		Sleep(5);
-		cleardevice();
+		global.erase = true;
 
 		win = true;
 		}
@@ -268,14 +231,77 @@ lvl3:
 
 		if (endzonecollision(square))
 		{
-			cout << "YOU WIN" << '\n';
+			//cout << "YOU WIN" << '\n';
 
-			closegraph();
+			goto lvl4;
 		}
 
 	}
 
+lvl4:
+	global.erase = true;
+	global.go = false;
+	square.reset(100, 560, 200, 460);
+	square.spawn();
+	powerup.setup(800, 500, true);
+	powerup.spawn();
+	lvl1circsetup();
+	randcircsetup();
+	lvl1endzonesetup();
+	lvl1walls();
+	global.go = true;
+	global.lvl = 4;
+	//goto lvl2;
 
+	while (true){
+		lvl1circupdate();
+		randcircupdate();
+
+
+
+		bool collide = circlecollision(circ, 15);
+		if (collide)
+		{
+
+		//	cout << "Collide!" << '\n';
+			global.erase = true;
+
+			square.reset(100, 560, 200, 460);
+			powerup.respawn();
+			win = false;
+
+		}
+
+		if (powerupcollision(powerup) && win == false)
+		{
+			powerup.collect();
+			global.go = false;
+			global.erase = true;
+			//lvl1walls();
+			Sleep(5);
+			global.erase = true;
+			//lvl1walls();
+			global.go = true;
+
+			win = true;
+		}
+
+		if (win)
+		{
+			if (endzonecollision(square))
+			{
+				cout << "YOU WIN" << '\n';
+				//global.lvl = 2;
+				//goto lvl2;
+
+				closegraph();
+			}
+		}
+
+
+
+		Sleep(45);
+	}
 
 
 
@@ -288,6 +314,8 @@ lvl3:
 
 void main()
 {
+	
+
 	thread g(game);
 	thread kb(KEY_LISTENER);
 
@@ -324,31 +352,62 @@ bool squarecheck(){
 }
 
 void PrintFuncts(){
+	if (global.erase){
+		setcolor(0);
+		bar(0, 0, 1919, 1019);
+		global.erase = false;
+	}
 	if (global.lvl == 1){
 		powerup.spawn();
 		lvl1circprint();
 		lvl1endzonesetup();
-		square.spawn();
 		lvl1walls();
+		square.spawn();
+
 	}
 	else if (global.lvl == 2){
 		//powerup.spawn();
 		lvl2circprint();
 		lvl2endzonesetup();
-		square.spawn();
 		lvl2walls();
+		square.spawn();
+		
 
 	}
 
+	else if (global.lvl == 4){
+		powerup.spawn();
+		lvl1circprint();
+		randcircprint();
+		lvl1endzonesetup();
+		lvl1walls();
+		square.spawn();
+		
+
+	}
 
 }
 
 void KEY_LISTENER(){
 	PrintFuncts();
 	while (true){
+		if (drawNewLevel){
+
+			setcolor(0);
+			bar(0, 0, 1919, 1019);
+
+			lvl2walls();
+			lvl2circsetup();
+			lvl2endzonesetup();
+			square.reset(910, 1017, 1010, 917);
+			square.spawn();
+
+			drawNewLevel = false;
+		}
 		while (global.go){
 			while (global.go){
 				global.hold = global.press = false;
+				
 				if (KEYBOARD(VK_S) && square.top <= getmaxy() && getpixel(square.left + 50, square.top + 10) != 8 && getpixel(square.left, square.top + 10) != 8 && getpixel(square.right, square.top + 10) != 8 && getpixel(square.left + 50, square.top + 1) != 8 && getpixel(square.left, square.top + 1) != 8 && getpixel(square.right, square.top + 1) != 8){
 					square.erase();
 					square.top += speed - 5;

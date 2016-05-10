@@ -222,12 +222,12 @@ void lvl2circprint(){
 	if (circ[15].dir){
 		if (circ[15].x == 220){
 			setcolor(0);
-			fillellipse(prevx1, circ[15].y,  30, 30);
+			fillellipse(prevx1, circ[15].y, 30, 30);
 			fillellipse(prevx2, circ[16].y, 30, 30);
 			setcolor(1);
 			fillellipse(circ[15].x, circ[15].y, 30, 30);
 			fillellipse(circ[16].x, circ[16].y, 30, 30);
-			
+
 		}
 		else{
 			setcolor(0);
@@ -243,7 +243,7 @@ void lvl2circprint(){
 	else{
 		if (circ[15].x == 1700){
 			setcolor(0);
-			fillellipse(prevx2, circ[15].y,  30, 30);
+			fillellipse(prevx2, circ[15].y, 30, 30);
 			fillellipse(prevx1, circ[16].y, 30, 30);
 			setcolor(1);
 			fillellipse(circ[15].x, circ[15].y, 30, 30);
@@ -272,5 +272,186 @@ void lvl3circupdate(){
 }
 
 void lvl3circprint(){
+
+}
+
+int randptx, randpty, prevrandx = 1919 / 2, prevrandy = 1019 / 2;
+double m, b;
+bool goingrt, change2;
+int randptx2, randpty2, prevrandx2 = (1919 / 2) + 60, prevrandy2 = 1019 / 2;
+double m2, b2;
+bool goingrt2, change3;
+
+void randcircsetup(){
+	circ[13].x = (1919 / 2) + 60;
+	circ[13].y = (1019 / 2);
+	circ[14].x = 1919 / 2;
+	circ[14].y = 1019 / 2;
+	setcolor(1);
+	fillellipse(circ[13].x, circ[13].y, 30, 30);
+	fillellipse(circ[14].x, circ[14].y, 30, 30);
+
+	randptx2 = rand() % 1919;
+	randpty2 = rand() % 1019;
+	m2 = ((double)circ[13].y - (double)randpty2) / ((double)circ[13].x - (double)randptx2);
+	b2 = -(m * circ[13].x) + circ[13].y;
+	goingrt2 = rand() % 2;
+
+	randptx = rand() % 1919;
+	randpty = rand() % 1019;
+	m = ((double)circ[14].y - (double)randpty) / ((double)circ[14].x - (double)randptx);
+	b = -(m * circ[14].x) + circ[14].y;
+	goingrt = rand() % 2;
+}
+
+
+
+void randcircupdate(){
+
+
+	if (goingrt){
+		prevrandx = circ[14].x;
+		prevrandy = circ[14].y;
+
+		circ[14].x += 15;
+		circ[14].y = (int)(m*(circ[14].x) + b);
+		change2 = true;
+		
+		checkline:
+		if (circ[14].x + 15 > 1700){
+			goto getnewline;
+		}
+		if (m >= 0 && (m* (circ[14].x + 15)) + b > 925){
+			goto getnewline;
+		}
+		if (m < 0 && (m* (circ[14].x + 15)) + b < 90){
+			goto getnewline;
+		}
+
+
+	}
+	else{
+		prevrandx = circ[14].x;
+		prevrandy = circ[14].y;
+		
+		circ[14].x -= 15;
+		circ[14].y = (int)(m * circ[14].x + b);
+		change2 = true;
+		
+		checkline2:
+		if (circ[14].x - 15 < 235){
+			goto getnewline;
+		}
+		if (m < 0 && ((m* (circ[14].x - 15)) + b > 925)){
+			goto getnewline;
+		}
+		if (m >= 0 && ((m* (circ[14].x - 15)) + b < 90)){
+			goto getnewline;
+		}
+	
+	}
+
+	if (false){
+	getnewline:
+
+		randptx = rand() % 1919;
+		randpty = rand() % 1019;
+		m = ((double)circ[14].y - (double)randpty) / ((double)circ[14].x - (double)randptx);
+		b = -(m * circ[14].x) + circ[14].y;
+
+
+		goingrt = rand() % 2;
+		if (goingrt){
+			goto checkline;
+		}
+		else {
+			goto checkline2;
+		}
+	}
+
+
+	if (goingrt2){
+		prevrandx2 = circ[13].x;
+		prevrandy2 = circ[13].y;
+		
+		circ[13].x += 15;
+		circ[13].y = (int)(m2*(circ[13].x) + b2);
+		change3 = true;
+
+	checkline3:
+		if (circ[13].x +15 > 1700){
+			goto getnewline2;
+		}
+		if (m2 >= 0 && (m2* (circ[13].x + 15)) + b2 > 925){
+			goto getnewline2;
+		}
+		if (m2 < 0 && (m2* (circ[13].x + 15)) + b2 < 90){
+			goto getnewline2;
+		}
+
+
+	}
+	else{
+		prevrandx2 = circ[13].x;
+		prevrandy2 = circ[13].y;
+
+		circ[13].x -= 15;
+		circ[13].y = (int)(m2 * circ[13].x + b2);
+		change3 = true;
+
+	checkline4:
+		if (circ[13].x - 15 < 235){
+			goto getnewline2;
+		}
+		if (m2 < 0 && ((m2* (circ[13].x - 15)) + b2 > 925)){
+			goto getnewline2;
+		}
+		if (m2 >= 0 && ((m2* (circ[13].x - 15)) + b2 < 90)){
+			goto getnewline2;
+		}
+
+	}
+
+	if (false){
+	getnewline2:
+
+		randptx2 = rand() % 1919;
+		randpty2 = rand() % 1019;
+		m2 = ((double)circ[13].y - (double)randpty2) / ((double)circ[13].x - (double)randptx2);
+		b2 = -(m2 * circ[13].x) + circ[13].y;
+
+
+		goingrt2 = rand() % 2;
+		if (goingrt2){
+			goto checkline3;
+		}
+		else {
+			goto checkline4;
+		}
+	}
+
+
+}
+
+void randcircprint(){
+	if (change2){
+		setcolor(0);
+		fillellipse(prevrandx, prevrandy, 30, 30);
+
+		setcolor(1);
+		fillellipse(circ[14].x, circ[14].y, 30, 30);
+		
+		change2 = false;
+	}
+	
+	if (change3){
+		setcolor(0);
+		fillellipse(prevrandx2, prevrandy2, 30, 30);
+
+		setcolor(1);
+		fillellipse(circ[13].x, circ[13].y, 30, 30);
+
+		change3 = false;
+	}
 
 }
