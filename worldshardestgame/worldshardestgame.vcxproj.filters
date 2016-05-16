@@ -29,5 +29,11 @@
     <ClInclude Include="endzone.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="VirtualKeys.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="powerup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

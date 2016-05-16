@@ -34,6 +34,11 @@
 #define VK_X 0x58// ('X')	X
 #define VK_Y 0x59// ('Y')	Y
 #define VK_Z 0x5A// ('Z')	Z
+#define VK_DOWN 0x28 //Arrow Down 
+#define VK_RIGHT 0x27 //Arrow Right 
+#define VK_UP 0x26 // Arrow Up 
+#define VK_LEFT 0x25 //Arrow Left 
+
 
 /*
 http://www.kbdedit.com/manual/low_level_vk_list.html

@@ -67,7 +67,9 @@
   <ItemGroup>
     <ClInclude Include="circle.h" />
     <ClInclude Include="endzone.h" />
+    <ClInclude Include="powerup.h" />
     <ClInclude Include="square.h" />
+    <ClInclude Include="VirtualKeys.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
