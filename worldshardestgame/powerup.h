@@ -29,4 +29,4 @@ struct Powerup
 	{
 		draw = true;
 	}
-}powerup;
+}powerup, powerup2, powerup3, powerup4;

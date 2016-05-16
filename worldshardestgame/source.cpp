@@ -39,6 +39,7 @@ void gr_start(int &GrDriver, int &GrMode, int &ErrorCode)
 
 string deathct = "Deaths = 0     ";
 bool win = false;
+bool win1 = false, win2 = false, win3 = false, win4 = false;
 bool drawNewLevel = false;
 int speed = 8;
 void PrintFuncts();
@@ -75,8 +76,8 @@ void game(){
 //	bar(0, 0, getmaxx(), getmaxy());
 	setbkcolor(0);
 	global.go = true;
-	//global.lvl = 4;
-	//goto lvl4;
+	//global.lvl = 3;
+	//goto lvl3;
 	square.spawn();
 	powerup.setup(800, 500, true);
 	powerup.spawn();
@@ -90,6 +91,8 @@ void game(){
 	setbkcolor(0);
 //	getch();
 	
+	global.lvl = 3;
+	goto lvl3;
 	while (true){
 		lvl1circupdate();
 
@@ -131,6 +134,7 @@ void game(){
 					
 
 					global.lvl = 2;
+					win = false;
 					goto lvl2;
 					
 					closegraph();
@@ -196,14 +200,22 @@ lvl2:
 lvl3:
 	global.erase = true;
 	global.go = false;
-	setcolor(0);
-	bar(0, 0, 1919, 1019);
-
+	//setcolor(0);
+	//bar(0, 0, 1919, 1019);
+	powerup.setup(200, 850, true);
+	powerup.spawn();
+	powerup2.setup(200, 200, true);
+	powerup2.spawn();
+	powerup3.setup(1919 - 200, 200, true);
+	powerup3.spawn();
+	powerup4.setup(1919 - 200, 850, true);
+	powerup4.spawn();
+	
 	lvl2walls();
 	lvl2circsetup();
 	lvl2endzonesetup();
 	square.reset(910, 1017, 1010, 917);
-	square.spawn();
+	//square.spawn();
 	global.lvl = 3;
 	global.go = true;
 	while (true){
@@ -222,31 +234,90 @@ lvl3:
 			square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
 
 			win = false;
+			win1 = false;
+			win2 = false;
+			win3 = false;
+			win4 = false;
+			powerup.respawn();
+			powerup2.respawn();
+			powerup3.respawn();
+			powerup4.respawn();
 
 		}
 
 
-		/*
-
-		if (powerupcollision(powerup) && win == false)
+		if (powerupcollision(powerup) && win1 == false)
 		{
-		powerup.collect();
-		global.erase = true;
-		Sleep(5);
-		global.erase = true;
+			powerup.collect();
+			global.go = false;
+			global.erase = true;
+			//lvl1walls();
+			Sleep(5);
+			global.erase = true;
+			//lvl1walls();
+			global.go = true;
+			win1 = true;
 
-		win = true;
 		}
-		*/
 
-		if (endzonecollision(square))
+		if (powerupcollision(powerup2) && win2 == false)
 		{
-			//cout << "YOU WIN" << '\n';
-			goto lvl4;
+			powerup2.collect();
+			global.go = false;
+			global.erase = true;
+			//lvl1walls();
+			Sleep(5);
+			global.erase = true;
+			//lvl1walls();
+			global.go = true;
+			win2 = true;
 
-			closegraph();
 		}
 
+		if (powerupcollision(powerup3) && win3 == false)
+		{
+			powerup3.collect();
+			global.go = false;
+			global.erase = true;
+			//lvl1walls();
+			Sleep(5);
+			global.erase = true;
+			//lvl1walls();
+			global.go = true;
+			win3 = true;
+
+		}
+
+		if (powerupcollision(powerup4) && win4 == false)
+		{
+			powerup4.collect();
+			global.go = false;
+			global.erase = true;
+			//lvl1walls();
+			Sleep(5);
+			global.erase = true;
+			//lvl1walls();
+			global.go = true;
+			win4 = true;
+
+		}
+
+		if (win1 && win2 && win3 && win4)
+		{
+			win = true;
+		}
+
+		if (win)
+		{
+
+			if (endzonecollision(square))
+			{
+				//cout << "YOU WIN" << '\n';
+				goto lvl4;
+
+				closegraph();
+			}
+		}
 		Sleep(45);
 	}
 
@@ -395,6 +466,10 @@ void PrintFuncts(){
 		lvl2endzonesetup();
 		lvl2walls();
 		square.spawn();
+		powerup.spawn();
+		powerup2.spawn();
+		powerup3.spawn();
+		powerup4.spawn();
 	}
 
 	else if (global.lvl == 4){
@@ -428,7 +503,7 @@ void PrintFuncts(){
 }
 
 void KEY_LISTENER(){
-	PrintFuncts();
+//	PrintFuncts();
 	while (true){
 		if (drawNewLevel){
 
