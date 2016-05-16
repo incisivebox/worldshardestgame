@@ -196,30 +196,31 @@ lvl2:
 lvl3:
 	global.erase = true;
 	global.go = false;
-	
+	setcolor(0);
+	bar(0, 0, 1919, 1019);
 
-	lvl3circsetup();
-	//outtextxy(100, 100, "This is a possible level.");
-	//lvl3endzonesetup();
-	//lvl3walls();
-	square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
+	lvl2walls();
+	lvl2circsetup();
+	lvl2endzonesetup();
+	square.reset(910, 1017, 1010, 917);
 	square.spawn();
-
+	global.lvl = 3;
 	global.go = true;
 	while (true){
 		lvl2circupdate();
 		//	square.reset(100, 560, 200, 460);
 
 
-		bool collide = circlecollision(circ, 12);
+		bool collide = circlecollision(circ, 16);
+
 		if (collide)
 		{
 			global.deaths++;
-			//cout << "Collide!" << '\n';
+			//		cout << "Collide!" << '\n';
 			global.erase = true;
 
 			square.reset(1919 / 2 - 50, 1017, 1919 / 2 + 50, 917);
-			//powerup.respawn();
+
 			win = false;
 
 		}
@@ -241,10 +242,12 @@ lvl3:
 		if (endzonecollision(square))
 		{
 			//cout << "YOU WIN" << '\n';
-
 			goto lvl4;
+
+			closegraph();
 		}
 
+		Sleep(45);
 	}
 
 lvl4:
@@ -320,6 +323,10 @@ lvl4:
 
 
 	closegraph();
+
+	getch();
+
+	system("cls");
 }
 
 
@@ -383,6 +390,12 @@ void PrintFuncts(){
 		
 
 	}
+	else if(global.lvl == 3){
+		lvl2circprint();
+		lvl2endzonesetup();
+		lvl2walls();
+		square.spawn();
+	}
 
 	else if (global.lvl == 4){
 		powerup.spawn();
@@ -404,8 +417,13 @@ void PrintFuncts(){
 
 			tempdeaths = global.deaths;
 			deathint = to_string(global.deaths);
-			deathct = "Deaths = " + deathint + "       ";
-}
+			if (global.deaths > 9){
+				deathct = "Deaths = " + deathint + "      ";
+			}
+			else{
+				deathct = "Deaths = " + deathint + "       ";
+			}
+		}
 
 }
 
