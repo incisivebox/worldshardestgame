@@ -91,8 +91,8 @@ void game(){
 	setbkcolor(0);
 //	getch();
 	
-	global.lvl = 3;
-	goto lvl3;
+//	global.lvl = 3;
+	//goto lvl3;
 	while (true){
 		lvl1circupdate();
 
